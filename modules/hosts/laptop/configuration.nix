@@ -3,7 +3,12 @@
     { config, pkgs, ... }:
     {
       imports = [
+        self.nixosModules.hostsCommon
+
         self.nixosModules.laptopHardware
+
+        self.nixosModules.hshen2908
+
         self.nixosModules.niri
       ];
 
@@ -44,27 +49,6 @@
         layout = "us";
         variant = "";
       };
-
-      # Define a user account. Don't forget to set a password with ‘passwd’.
-      users.users."hshen2908" = {
-        isNormalUser = true;
-        description = "Henique Shen";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-        ];
-        packages = with pkgs; [ ];
-      };
-
-      # Allow unfree packages
-      nixpkgs.config.allowUnfree = true;
-
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-        #  wget
-      ];
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.

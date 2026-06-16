@@ -1,14 +1,23 @@
-{ pkgs, ... }: {
-  users.users.hshen2908 = {
-    isNormalUser = true;
-    description = "Henrique Shen";
-    extraGroups = [
-      "users"
-      "wheel"
-      "networkmanager"
-      "docker"
-    ];
-    shell = pkgs.zsh;
-  };
-  programs.zsh.enable = true;
+{ self, inputs, ... }: {
+  flake.nixosModules.hshen2908 =
+    { config, pkgs, ... }:
+    {
+      imports = [ ];
+
+      users.users."hshen2908" = {
+        isNormalUser = true;
+        description = "Henique Shen";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+        ];
+        shell = pkgs.zsh;
+        packages = with pkgs; [ ];
+      };
+      programs.zsh.enable = true;
+
+      home-manager = {
+        users."hshen2908" = self.homeModules.hshen2908;
+      };
+    };
 }
