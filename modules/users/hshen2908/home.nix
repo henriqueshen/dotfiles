@@ -17,7 +17,7 @@
     { config, pkgs, ... }:
     {
       imports = [
-        config.flake.homeModules.common
+        self.homeModules.common
       ];
 
       home = {
