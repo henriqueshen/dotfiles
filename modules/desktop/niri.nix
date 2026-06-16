@@ -15,7 +15,7 @@
         };
       };
       config = lib.mkIf config.programs.niri.enable {
-        programs.niri.package = inputs.wrapper-modules.niri.wrap {
+        programs.niri.package = inputs.wrapper-modules.wrappers.niri.wrap {
           inherit pkgs;
           settings = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.settings {
             output = config.programs.niri.outputs;
