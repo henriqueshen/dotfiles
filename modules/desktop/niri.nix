@@ -28,24 +28,22 @@
           outputs = {
             "eDP-1" = {
               mode = "2880x1800@60";
-              position = [
-                {
+              position = _: {
+                props = {
                   x = 0;
                   y = 0;
-                }
-                (_: { })
-              ];
+                };
+              };
               transform = "180";
             };
             "eDP-2" = {
               mode = "2880x1800@60";
-              position = [
-                {
+              position = _: {
+                props = {
                   x = 0;
                   y = 1800;
-                }
-                (_: { })
-              ];
+                };
+              };
             };
           };
 
