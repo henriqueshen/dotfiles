@@ -13,12 +13,12 @@
           default = { };
           description = "Host specific display and output configuration for niri";
         };
-        config = lib.mkIf config.programs.niri.enable {
-          programs.niri.package = inputs.wrapper-modules.niri.wrap {
-            inherit pkgs;
-            settings = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.settings {
-              output = config.programs.niri.outputs;
-            };
+      };
+      config = lib.mkIf config.programs.niri.enable {
+        programs.niri.package = inputs.wrapper-modules.niri.wrap {
+          inherit pkgs;
+          settings = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.settings {
+            output = config.programs.niri.outputs;
           };
         };
       };
