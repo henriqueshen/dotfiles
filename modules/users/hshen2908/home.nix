@@ -41,7 +41,7 @@
         systemdTarget = "graphical-session.target";
         settings = [
           {
-            profiles = {
+            profile = {
               name = "default";
               outputs = [
                 {
