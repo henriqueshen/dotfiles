@@ -39,6 +39,8 @@
         variant = "";
       };
 
+      environment.systemPackages = with pkgs; [ kanshi ];
+
       services.kanshi = {
         enable = true;
         settings = [
