@@ -1,10 +1,32 @@
 { self, inputs, ... }: {
-  flake.nixosModules.niri = { pkgs, lib, ... }: {
-    programs.niri = {
-      enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
+  flake.nixosModules.niri =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    {
+      options.programs.niri = {
+        outputs = lib.mkOption {
+          type = lib.types.attrsOf lib.types.anything;
+          default = { };
+          description = "Host specific display and output configuration for niri";
+        };
+        config = lib.mkIf config.programs.niri.enable {
+          programs.niri.package = inputs.wrapper-modules.niri.wrap {
+            inherit pkgs;
+            settings = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.settings {
+              output = config.programs.niri.outputs;
+            };
+          };
+        };
+      };
+      # programs.niri = {
+      #   enable = true;
+      #   package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
+      # };
     };
-  };
 
   perSystem =
     {

@@ -30,8 +30,10 @@
       # myHomeModules.apps.tmux.enable = false;
       programs.git = {
         enable = true;
-        userName = "Henrique Shen";
-        userEmail = "dev.henrique.shen@gmail.com";
+        setting.user = {
+          name = "Henrique Shen";
+          email = "dev.henrique.shen@gmail.com";
+        };
       };
 
       home.packages = with pkgs; [

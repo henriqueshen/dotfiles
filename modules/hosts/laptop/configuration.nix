@@ -14,10 +14,6 @@
 
       boot = {
         loader = {
-          # limine = {
-          #   enable = true;
-          #   efiSupport = true;
-          # };
           systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
         };
@@ -46,6 +42,32 @@
       hardware.bluetooth = {
         enable = true;
         powerOnBoot = true;
+        settings = {
+          General = {
+            Experimental = true;
+            FastConnectable = true;
+          };
+          Policy = {
+            AutoEnable = true;
+          };
+        };
+      };
+
+      programs.niri = {
+        enable = true;
+        outputs = {
+          "eDP-1" = {
+            mode = "2880x1800@60";
+            position.x = 0;
+            position.y = 0;
+            transform.rotation = 180;
+          };
+          "eDP-2" = {
+            mode = "2880x1800@60";
+            position.x = 0;
+            position.y = 1800;
+          };
+        };
       };
 
       programs.mtr.enable = true;
