@@ -14,11 +14,11 @@
 
       boot = {
         loader = {
-          limine = {
-            enable = true;
-            efiSupport = true;
-          };
-          systemd-boot.enable = false;
+          # limine = {
+          #   enable = true;
+          #   efiSupport = true;
+          # };
+          systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
         };
         initrd.availableKernelModules = [
