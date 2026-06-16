@@ -17,7 +17,7 @@
     { config, pkgs, ... }:
     {
       imports = [
-        self.homeModules.common
+        self.homeModules.usersCommon
       ];
 
       home = {

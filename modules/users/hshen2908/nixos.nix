@@ -3,7 +3,7 @@
     { config, pkgs, ... }:
     {
       imports = [
-        self.nixosModules.common
+        self.nixosModules.usersCommon
       ];
 
       users.users."hshen2908" = {
