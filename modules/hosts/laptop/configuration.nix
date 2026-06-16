@@ -53,23 +53,6 @@
         };
       };
 
-      programs.niri = {
-        enable = true;
-        outputs = {
-          "eDP-1" = {
-            mode = "2880x1800@60";
-            position.x = 0;
-            position.y = 0;
-            transform.rotation = 180;
-          };
-          "eDP-2" = {
-            mode = "2880x1800@60";
-            position.x = 0;
-            position.y = 1800;
-          };
-        };
-      };
-
       programs.mtr.enable = true;
       programs.gnupg.agent = {
         enable = true;
