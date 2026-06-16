@@ -25,6 +25,30 @@
 
           input.keyboard.xkb.layout = "us,ua";
 
+          outputs = {
+            "eDP-1" = {
+              mode = "2880x1800@60";
+              position = [
+                {
+                  x = 0;
+                  y = 0;
+                }
+                (_: { })
+              ];
+              transform = "180";
+            };
+            "eDP-2" = {
+              mode = "2880x1800@60";
+              position = [
+                {
+                  x = 0;
+                  y = 1800;
+                }
+                (_: { })
+              ];
+            };
+          };
+
           layout.gaps = 5;
 
           binds = {
