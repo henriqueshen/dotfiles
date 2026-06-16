@@ -36,31 +36,6 @@
         };
       };
 
-      services.kanshi = {
-        enable = true;
-        systemdTarget = "graphical-session.target";
-        settings = [
-          {
-            profile = {
-              name = "default";
-              outputs = [
-                {
-                  criteria = "eDP-1";
-                  mode = "2880x1800@60";
-                  position = "0,0";
-                  transform = "180";
-                }
-                {
-                  criteria = "eDP-2";
-                  mode = "2880x1800@60";
-                  position = "0,1800";
-                }
-              ];
-            };
-          }
-        ];
-      };
-
       home.packages = with pkgs; [
         vscode
         firefox
