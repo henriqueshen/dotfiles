@@ -2,7 +2,9 @@
   flake.nixosModules.hshen2908 =
     { config, pkgs, ... }:
     {
-      imports = [ ];
+      imports = [
+        self.nixosModules.common
+      ];
 
       users.users."hshen2908" = {
         isNormalUser = true;
