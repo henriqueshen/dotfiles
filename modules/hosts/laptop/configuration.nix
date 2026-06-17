@@ -9,7 +9,7 @@
 
         self.nixosModules.hshen2908
 
-        self.nixosModules.niri
+        self.nixosModules.niri2
       ];
 
       boot = {
@@ -26,7 +26,33 @@
         ];
       };
 
-      networking.hostName = "nixos";
+      programs.niri.customSettings = {
+        settings = {
+          outputs = {
+            "eDP-1" = {
+              mode = "2880x1800@60";
+              position = _: {
+                props = {
+                  x = 0;
+                  y = 0;
+                };
+              };
+              transform = "180";
+            };
+            "eDP-2" = {
+              mode = "2880x1800@60";
+              position = _: {
+                props = {
+                  x = 0;
+                  y = 1029;
+                };
+              };
+            };
+          };
+        };
+      };
+
+      networking.hostName = "rnixos";
 
       networking.networkmanager.enable = true;
 
