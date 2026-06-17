@@ -9,7 +9,7 @@
     {
       options.programs.niri = {
         customSettings = lib.mkOption {
-          type = lib.types.attrsOf lib.types.deferredModule;
+          type = lib.types.attrs;
           default = { };
           description = "Niri settings to override on top of the default package wrapper";
         };
