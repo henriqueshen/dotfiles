@@ -11,8 +11,7 @@
         customSettings = lib.mkOption {
           type = inputs.wrapper-modules.lib.types.subWrapperModuleWith {
             modules = [
-              # inputs.wrapper-modules.modules.wrapper
-              inputs.wrapper-modules.wrappers.niri.modules.default
+              inputs.wrapper-modules.wrapperModules.niri
             ];
           };
           default = { };
