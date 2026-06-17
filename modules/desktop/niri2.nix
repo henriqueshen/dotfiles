@@ -9,15 +9,7 @@
     {
       options.programs.niri = {
         customSettings = lib.mkOption {
-          type = inputs.wrapper-modules.lib.types.subWrapperModuleWith {
-            specialArgs = { inherit pkgs; };
-            modules = [
-              inputs.wrapper-modules.wrapperModules.niri
-              ({ config, ... }: {
-                config.pkgs = pkgs;
-              })
-            ];
-          };
+          type = lib.types.attrsOf lib.types.deferredModule;
           default = { };
           description = "Niri settings to override on top of the default package wrapper";
         };
