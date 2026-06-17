@@ -9,7 +9,7 @@
 
         self.nixosModules.hshen2908
 
-        self.nixosModules.niri2
+        self.nixosModules.niri
       ];
 
       boot = {
