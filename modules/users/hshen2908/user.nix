@@ -3,7 +3,9 @@
     { config, pkgs, ... }:
     {
       imports = [
-        self.nixosModules.usersCommon
+        self.nixosModules.userCommon
+
+        self.nixosModules.hshen2908Home
       ];
 
       users.users."hshen2908" = {
@@ -17,9 +19,5 @@
         packages = with pkgs; [ ];
       };
       programs.zsh.enable = true;
-
-      home-manager = {
-        users."hshen2908" = self.homeModules.hshen2908;
-      };
     };
 }

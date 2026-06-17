@@ -1,15 +1,14 @@
 { config, inputs, ... }: {
-  flake.nixosModules.usersCommon = { ... }: {
+  flake.nixosModules.homeCommon = { ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
     ];
-
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
     };
   };
-  flake.homeModules.usersCommon = { ... }: {
+  flake.homeModules.homeCommon = { ... }: {
 
   };
 }

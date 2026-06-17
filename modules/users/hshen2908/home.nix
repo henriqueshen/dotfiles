@@ -5,19 +5,21 @@
   ...
 }:
 {
-  perSystem = { pkgs, system, ... }: {
-    legacyPackages.homeConfigurations."hshen2908" = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        self.homeModules.hshen2908
+  flake.nixosModules.hshen2908Home =
+    { config, pkgs, ... }:
+    {
+      imports = [
+        self.nixosModules.homeCommon
       ];
+      home-manager = {
+        users."hshen2908" = self.homeModules.hshen2908;
+      };
     };
-  };
   flake.homeModules.hshen2908 =
     { config, pkgs, ... }:
     {
       imports = [
-        self.homeModules.usersCommon
+        self.homeModules.homeCommon
       ];
 
       home = {
@@ -41,4 +43,12 @@
         firefox
       ];
     };
+  perSystem = { pkgs, system, ... }: {
+    legacyPackages.homeConfigurations."hshen2908" = inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        self.homeModules.hshen2908
+      ];
+    };
+  };
 }

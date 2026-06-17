@@ -3,9 +3,10 @@
     { config, pkgs, ... }:
     {
       imports = [
-      ];
+        self.nixosModules.diskCommon
 
-      disko.devices = self.disko.diskoConfiguration.minimal;
+        self.diskoConfiguration.minimal
+      ];
     };
 
   flake.diskoConfiguration.minimal = {

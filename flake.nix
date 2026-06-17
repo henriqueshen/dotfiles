@@ -6,7 +6,10 @@
     import-tree.url = "github:vic/import-tree";
 
     disko.url = "github:nix-community/disko";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
