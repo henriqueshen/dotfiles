@@ -10,9 +10,12 @@
       options.programs.niri = {
         customSettings = lib.mkOption {
           type = inputs.wrapper-modules.lib.types.subWrapperModuleWith {
-            inherit pkgs;
+            specialArgs = { inherit pkgs; };
             modules = [
               inputs.wrapper-modules.wrapperModules.niri
+              ({ config, ... }: {
+                config.pkgs = pkgs;
+              })
             ];
           };
           default = { };
