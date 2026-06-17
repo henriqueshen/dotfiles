@@ -5,8 +5,6 @@
       imports = [
         self.nixosModules.configurationCommon
 
-        self.nixosModules.laptopHardware
-
         self.nixosModules.hshen2908
 
         self.nixosModules.niri
