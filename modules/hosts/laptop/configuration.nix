@@ -3,7 +3,7 @@
     { config, pkgs, ... }:
     {
       imports = [
-        self.nixosModules.hostsCommon
+        self.nixosModules.configurationCommon
 
         self.nixosModules.laptopHardware
 
@@ -17,13 +17,6 @@
           systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
         };
-        initrd.availableKernelModules = [
-          "usbhid"
-          "xhci_pci"
-          "nvme"
-          "usb_storage"
-          "sd_mod"
-        ];
       };
 
       programs.niri.customSettings = {
@@ -52,7 +45,7 @@
         };
       };
 
-      networking.hostName = "rnixos";
+      networking.hostName = "nixos";
 
       networking.networkmanager.enable = true;
 
