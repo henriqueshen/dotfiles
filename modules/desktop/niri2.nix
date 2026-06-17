@@ -10,6 +10,7 @@
       options.programs.niri = {
         customSettings = lib.mkOption {
           type = inputs.wrapper-modules.lib.types.subWrapperModuleWith {
+            inherit pkgs;
             modules = [
               inputs.wrapper-modules.wrapperModules.niri
             ];
