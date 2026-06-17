@@ -2,7 +2,7 @@
   flake.nixosModules.secretsCommon =
     { config, pkgs, ... }:
     {
-      imports = [ inputs.sops-nix.nixosModules.sops ];
+      # imports = [ inputs.sops-nix.nixosModules.sops ];
 
       # Global sops-nix configuration shared across all hosts using this module
       # sops = {
