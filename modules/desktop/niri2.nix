@@ -25,9 +25,7 @@
           enable = true;
 
           package = (
-            self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri2.override {
-              modules = [ config.programs.niri.customSettings ];
-            }
+            self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri2.wrap config.programs.niri.customSettings
           );
         };
       };
