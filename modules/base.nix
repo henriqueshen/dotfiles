@@ -1,7 +1,7 @@
 { inputs, ... }: {
   imports = [
     inputs.disko.flakeModules.default
-    inputs.sops-nix.nixosModules.sops-nix
+    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.flakeModules.home-manager
   ];
 
