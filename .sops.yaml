@@ -1,11 +1,12 @@
 keys:
   - &primary age17exjmsguwk2fypyrm4ctehvq4pdqhvkphwcza597cssktqrgdvzs2aegel
   - &hshen2908 age1xtsml3g4k6vq35we5a928cpcj0895s3944qp9e4l20ks647kj5lqfaegzr
+  - &sshhost age1vru9ymj5pjt7jx4qzx50z7dzh9wxjxaa3k7uf6xvc575n6z5l5uss34rem
 creation_rules:
   - path_regex: ^secrets/users/hshen2908/.*\.yaml$
     key_groups:
       - age: [ *primary, *hshen2908 ]
   - path_regex: ^secrets/.*\.yaml$
     key_groups:
-      - age: [ *primary ]
+      - age: [ *primary, *sshhost ]
       
