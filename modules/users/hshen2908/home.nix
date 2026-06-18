@@ -22,6 +22,7 @@
         self.homeModules.homeCommon
 
         self.homeModules.git
+        self.homeModules.tmux
       ];
 
       home = {
