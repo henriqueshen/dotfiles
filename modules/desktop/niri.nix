@@ -20,7 +20,7 @@
           enable = true;
 
           package = (
-            self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.wrap config.programs.niri.customSettings
+            self.packages.${pkgs.stdenv.hostPlatform.system}.niri.wrap config.programs.niri.customSettings
           );
         };
       };
@@ -44,7 +44,7 @@
 
       config = {
         home.packages = [
-          (self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.wrap config.programs.niri.customSettings)
+          (self.packages.${pkgs.stdenv.hostPlatform.system}.niri.wrap config.programs.niri.customSettings)
         ];
       };
     };
@@ -57,10 +57,10 @@
       ...
     }:
     {
-      packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
+      packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
-          spawn-at-startup = [ (lib.getExe self'.packages.myNoctalia) ];
+          spawn-at-startup = [ (lib.getExe self'.packages.noctalia) ];
 
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
@@ -74,17 +74,11 @@
 
           layout.gaps = 5;
 
-          # binds = {
-          #   "Mod+Shift+Slash".show-hotkey-overlay = { };
-          #   "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
-          #   "Mod+Q".close-window = { };
-          #   "Mod+R".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-          # };
-
           binds =
             let
               inherit (lib) getExe getExe';
               terminal = getExe pkgs.kitty;
+              browser = getExe pkgs.firefox;
               fuzzel = getExe pkgs.fuzzel;
               swaylock = getExe pkgs.swaylock;
               orca = getExe pkgs.orca;
@@ -95,7 +89,7 @@
             {
               "Mod+Shift+Slash".show-hotkey-overlay = _: { };
               "Mod+T".spawn = [ terminal ];
-              "Mod+R".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+              "Mod+R".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
               # "Mod+D".spawn = [ fuzzel ];
               "Super+Alt+L".spawn = [ swaylock ];
               "Super+Alt+S" = _: {
