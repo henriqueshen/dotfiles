@@ -88,8 +88,6 @@
           plugin = pkgs.fetchFromGitHub {
             owner = "vaaleyard";
             repo = "tmux-dotbar";
-            rev = "...";
-            hash = "...";
           };
 
           relPath = "dotbar.tmux";
