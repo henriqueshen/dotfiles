@@ -16,7 +16,7 @@
     {
       imports = [ inputs.sops-nix.homeManagerModules.sops ];
       sops = {
-        defaultSopsFile = ../secrets/users/${config.home.username}/secrets.yaml;
+        defaultSopsFile = ../../secrets/users/${config.home.username}/secrets.yaml;
         defaultSopsFormat = "yaml";
 
         age.keyFile = "/run/secrets/users/${config.home.username}/sops/age-key";
