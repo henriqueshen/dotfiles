@@ -1,10 +1,4 @@
-{
-  self,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ self, inputs, ... }: {
   flake.nixosModules.secretsCommon =
     { config, pkgs, ... }:
     {
@@ -26,12 +20,6 @@
         defaultSopsFormat = "yaml";
 
         age.keyFile = "/run/secrets/users/${config.home.username}/sops/age-key";
-
-        home.activation.reloadSystemdBeforeSops = lib.mkIf pkgs.stdenv.isLinux (
-          lib.hm.dag.entryBetween [ "sops-nix" ] [ "reloadSystemd" ] ''
-            # no-op: forces sops-nix to run after linkGeneration and reloadSystemd
-          ''
-        );
       };
     };
 }
