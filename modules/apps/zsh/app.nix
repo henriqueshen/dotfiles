@@ -70,22 +70,25 @@
         pkgs.zsh-vi-mode
       ];
 
-      prefixContent = [
-        ''
-          export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
-          ZSH_THEME="robbyrussell"
-          plugins=(
-            git
-            sudo
-          )
-          source $ZSH/oh-my-zsh.sh
-          autoload -Uz compinit
-          compinit
-          source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-          source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        ''
-      ];
+      zshrc = ''
+        export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+
+        ZSH_THEME="robbyrussell"
+
+        plugins=(
+          git
+          sudo
+        )
+
+        source $ZSH/oh-my-zsh.sh
+
+        autoload -Uz compinit
+        compinit
+
+        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      '';
     };
   };
 }
