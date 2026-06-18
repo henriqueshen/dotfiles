@@ -15,7 +15,7 @@
         settings = {
           "github.com" = {
             HostName = "github.com";
-            IdentityFile = config.sops.secrets."/git/ssh-key".path;
+            IdentityFile = config.sops.secrets."git/ssh-key".path;
           };
         };
       };
