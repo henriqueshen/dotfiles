@@ -6,7 +6,7 @@
         self.homeModules.secretsCommon
       ];
 
-      sops.secrets."/git/ssh-key" = {
+      sops.secrets."git/ssh-key" = {
       };
 
       programs.ssh = {
