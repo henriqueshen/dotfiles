@@ -26,7 +26,7 @@
       };
     };
 
-  flake.homeManagerModules.niri =
+  flake.homeModules.niri =
     {
       pkgs,
       lib,

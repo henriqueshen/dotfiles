@@ -26,7 +26,7 @@
       };
     };
 
-  flake.homeManagerModules.tmux =
+  flake.homeModules.tmux =
     {
       pkgs,
       lib,
