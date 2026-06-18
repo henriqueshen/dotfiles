@@ -28,10 +28,7 @@
         stateVersion = "26.05";
       };
 
-      # myHomeModules.apps.neovim.enable = true;
-      # myHomeModules.apps.tmux.enable = false;
       programs.git = {
-        enable = true;
         settings.user = {
           name = "Henrique Shen";
           email = "dev.henrique.shen@gmail.com";

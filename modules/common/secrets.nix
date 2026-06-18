@@ -4,14 +4,22 @@
     {
       imports = [ inputs.sops-nix.nixosModules.sops ];
 
-      # Global sops-nix configuration shared across all hosts using this module
-      # sops = {
-      #   defaultSopsFile = ../secrets/secrets.yaml; # Adjust path to your encrypted sops file
-      #   defaultSopsFormat = "yaml";
-      #
-      #   # Automatically use the machine's SSH key for decryption
-      #   age.keyFile = "/var/lib/sops-nix/key.txt";
-      #   sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      # };
+      sops = {
+        defaultSopsFile = ../secrets/secrets.yaml;
+        defaultSopsFormat = "yaml";
+
+        age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      };
+    };
+  flake.homeModules.secretsCommon =
+    { config, pkgs, ... }:
+    {
+      imports = [ inputs.sops-nix.homeManagerModules.sops ];
+      sops = {
+        defaultSopsFile = ../secrets/users/${config.home.username}/secrets.yaml;
+        defaultSopsFormat = "yaml";
+
+        age.keyFile = "/run/secrets/users/${config.home.username}/sops/age-key";
+      };
     };
 }
