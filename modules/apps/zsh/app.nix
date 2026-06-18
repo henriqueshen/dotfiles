@@ -64,7 +64,7 @@
           + "--modified --git --extended --all";
       };
 
-      runtimePackages = [
+      runtimePkgs = [
         pkgs.oh-my-zsh
         pkgs.zsh-autosuggestions
         pkgs.zsh-syntax-highlighting
