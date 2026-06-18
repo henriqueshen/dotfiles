@@ -52,7 +52,8 @@
   perSystem = { pkgs, ... }: {
     packages.zsh = inputs.wrapper-modules.wrappers.zsh.wrap {
       inherit pkgs;
-      aliases = {
+
+      zshAliases = {
         hms = "nix run home-manager -- switch --flake ~/.config/nix#hshen2908";
         start = "start-hyprland";
         ls = "eza --hyperlink --git --all";
