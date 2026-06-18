@@ -64,7 +64,13 @@
 
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-          input.keyboard.xkb.layout = "us,ua";
+          input = {
+            focus-follows-mouse = { };
+            keyboard.xkb.layout = "us,ua";
+            mouse = {
+              accel-profile = "flat";
+            };
+          };
 
           layout.gaps = 5;
 
@@ -78,7 +84,7 @@
           binds =
             let
               inherit (lib) getExe getExe';
-              alacritty = getExe pkgs.alacritty;
+              terminal = getExe pkgs.kitty;
               fuzzel = getExe pkgs.fuzzel;
               swaylock = getExe pkgs.swaylock;
               orca = getExe pkgs.orca;
@@ -88,8 +94,9 @@
             in
             {
               "Mod+Shift+Slash".show-hotkey-overlay = _: { };
-              "Mod+T".spawn = [ alacritty ];
-              "Mod+D".spawn = [ fuzzel ];
+              "Mod+T".spawn = [ terminal ];
+              "Mod+R".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+              # "Mod+D".spawn = [ fuzzel ];
               "Super+Alt+L".spawn = [ swaylock ];
               "Super+Alt+S" = _: {
                 props.allow-when-locked = true;
@@ -216,7 +223,7 @@
               "Mod+BracketRight".consume-or-expel-window-right = _: { };
               "Mod+Comma".consume-window-into-column = _: { };
               "Mod+Period".expel-window-from-column = _: { };
-              "Mod+R".switch-preset-column-width = _: { };
+              # "Mod+R".switch-preset-column-width = _: { };
               "Mod+Shift+R".switch-preset-column-width-back = _: { };
               "Mod+Ctrl+Shift+R".switch-preset-window-height = _: { };
               "Mod+Ctrl+R".reset-window-height = _: { };
