@@ -72,7 +72,7 @@
       ];
 
       zshrc = {
-        text = ''
+        content = ''
           export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
 
           ZSH_THEME="robbyrussell"
