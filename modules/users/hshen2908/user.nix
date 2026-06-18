@@ -6,6 +6,7 @@
         self.nixosModules.userCommon
 
         self.nixosModules.hshen2908Home
+        self.nixosModules.hshen2908Secrets
       ];
 
       users.users."hshen2908" = {
