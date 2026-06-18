@@ -1,6 +1,6 @@
 keys:
   - &primary age17exjmsguwk2fypyrm4ctehvq4pdqhvkphwcza597cssktqrgdvzs2aegel
-  - &hshen2908 age1mxjr5la6nw22c86tp7p8nv9t3zsavk9znp2vyasdp4htuuxqlutqj8tl0k
+  - &hshen2908 age1xtsml3g4k6vq35we5a928cpcj0895s3944qp9e4l20ks647kj5lqfaegzr
 creation_rules:
   - path_regex: ^secrets/users/hshen2908/.*\.yaml$
     key_groups:
