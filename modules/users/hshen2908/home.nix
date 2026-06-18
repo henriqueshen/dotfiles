@@ -20,6 +20,8 @@
     {
       imports = [
         self.homeModules.homeCommon
+
+        self.homeModules.git
       ];
 
       home = {
