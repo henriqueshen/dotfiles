@@ -84,21 +84,22 @@
           '';
         }
 
-        # {
-        #   plugin = pkgs.fetchFromGitHub {
-        #     owner = "vaaleyard";
-        #     repo = "tmux-dotbar";
-        #     tag = "0.3.3";
-        #   };
-        #
-        #   relPath = "dotbar.tmux";
-        #
-        #   configBefore = ''
-        #     set -g @tmux-dotbar-bg "default"
-        #     set -g @tmux-dotbar-right true
-        #     set -g @tmux-dotbar-position top
-        #   '';
-        # }
+        {
+          plugin = pkgs.fetchFromGitHub {
+            owner = "vaaleyard";
+            repo = "tmux-dotbar";
+            tag = "0.3.3";
+            hash = "sha256-CAKEN8Sk3t0nonV2R9df/DFTTUrVnbso0ZVGgeeGINM=";
+          };
+
+          relPath = "dotbar.tmux";
+
+          configBefore = ''
+            set -g @tmux-dotbar-bg "default"
+            set -g @tmux-dotbar-right true
+            set -g @tmux-dotbar-position top
+          '';
+        }
       ];
 
       configAfter = ''
