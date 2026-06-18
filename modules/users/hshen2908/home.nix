@@ -23,6 +23,7 @@
 
         self.homeModules.git
         self.homeModules.tmux
+        self.homeModules.zsh
       ];
 
       home = {
