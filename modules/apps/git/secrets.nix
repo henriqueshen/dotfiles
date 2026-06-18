@@ -11,9 +11,11 @@
 
       programs.ssh = {
         enable = true;
-        matchBlocks = {
+        enableDefaultConfig = false;
+        settings = {
           "github.com" = {
-            identityFile = config.sops.secrets."/git/ssh-key".path;
+            HostName = "github.com";
+            IdentityFile = config.sops.secrets."/git/ssh-key".path;
           };
         };
       };
