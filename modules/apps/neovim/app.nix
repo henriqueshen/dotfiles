@@ -33,45 +33,35 @@
 
   perSystem =
     {
-      pkgs,
-      lib,
+      config,
       self',
+      pkgs,
       system,
       ...
     }:
     {
-      perSystem =
-        {
-          config,
-          self',
-          pkgs,
-          system,
-          ...
-        }:
-        {
 
-          nixvimConfigurations = {
-            ide = {
-              imports = [
-                self'.flake.nixvimModules.keymaps
-                self'.flake.nixvimModules.options
-              ];
+      nixvimConfigurations = {
+        ide = {
+          imports = [
+            self'.flake.nixvimModules.keymaps
+            self'.flake.nixvimModules.options
+          ];
 
-              plugins.telescope.enable = true;
-            };
-
-            minimal = {
-              imports = [
-                self'.flake.nixvimModules.keymaps
-                self'.flake.nixvimModules.options
-              ];
-
-              colorschemes.nord.enable = true;
-            };
-          };
-
-          packages.nixvim = config.nixvimConfigurations.ide.wrapped;
-          packages.nixvimMinimal = config.nixvimConfigurations.minimal.wrapped;
+          plugins.telescope.enable = true;
         };
+
+        minimal = {
+          imports = [
+            self'.flake.nixvimModules.keymaps
+            self'.flake.nixvimModules.options
+          ];
+
+          colorschemes.nord.enable = true;
+        };
+      };
+
+      packages.nixvim = config.nixvimConfigurations.ide.wrapped;
+      packages.nixvimMinimal = config.nixvimConfigurations.minimal.wrapped;
     };
 }
