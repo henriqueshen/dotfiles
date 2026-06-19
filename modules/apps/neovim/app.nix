@@ -44,8 +44,8 @@
       nixvimConfigurations = {
         ide = {
           imports = [
-            self'.flake.nixvimModules.keymaps
-            self'.flake.nixvimModules.options
+            self'.nixvimModules.keymaps
+            self'.nixvimModules.options
           ];
 
           plugins.telescope.enable = true;
@@ -53,8 +53,8 @@
 
         minimal = {
           imports = [
-            self'.flake.nixvimModules.keymaps
-            self'.flake.nixvimModules.options
+            self'.nixvimModules.keymaps
+            self'.nixvimModules.options
           ];
 
           colorschemes.nord.enable = true;
