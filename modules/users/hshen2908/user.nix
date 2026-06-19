@@ -7,6 +7,8 @@
 
         self.nixosModules.hshen2908Home
         self.nixosModules.hshen2908Secrets
+
+        self.nixosModules.zsh
       ];
 
       users.users."hshen2908" = {
