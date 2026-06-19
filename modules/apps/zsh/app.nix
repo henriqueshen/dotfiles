@@ -49,17 +49,18 @@
       };
     };
 
-  perSystem = { pkgs, ... }: {
+  perSystem = { pkgs, lib, ... }: {
     packages.zsh = inputs.wrapper-modules.wrappers.zsh.wrap {
       inherit pkgs;
 
       zshAliases = {
-        ngs = "sudo nix-collect-garbage -d";
-        ngu = "nix-collect-garbage -d";
-        ls = "eza --hyperlink --git --all";
-        lst = "eza --tree --recurse --level 2 --hyperlink --git --all";
+        ngs = "sudo ${lib.getExe pkgs.nix-collect-garbage} -d";
+        ngu = "${lib.getExe pkgs.nix-collect-garbage} -d";
+        cd = "${lib.getExe pkgs.zoxide}";
+        ls = "${lib.getExe pkgs.eza} --hyperlink --git --all";
+        lst = "${lib.getExe pkgs.eza} --tree --recurse --level 2 --hyperlink --git --all";
         lsa =
-          "eza --tree --recurse --level 2 --hyperlink --long --header "
+          "${lib.getExe pkgs.eza} --tree --recurse --level 2 --hyperlink --long --header "
           + "--links --inode --mounts --blocksize --total-size "
           + "--modified --git --extended --all";
       };
@@ -69,6 +70,12 @@
         pkgs.zsh-autosuggestions
         pkgs.zsh-syntax-highlighting
         pkgs.zsh-vi-mode
+
+        pkgs.nixos-rebuild
+        pkgs.nix-collect-garbage
+
+        pkgs.zoxide
+        pkgs.eza
       ];
 
       zshrc = {
@@ -81,7 +88,7 @@
               return 1
             fi
 
-            nixos-rebuild switch --flake ".#$1"
+            sudo ${lib.getExe pkgs.nixos-rebuild} switch --flake ".#$1"
           }
 
           plugins=(
