@@ -42,30 +42,22 @@
     {
 
       nixvimConfigurations = {
-        ide = {
-          _module.args.pkgs = pkgs;
+        ide = inputs.nixvim.lib.evalNixvim {
+          inherit system;
 
-          imports = [
+          modules = [
+            { _module.args.pkgs = pkgs; }
+
             self.nixvimModules.keymaps
             self.nixvimModules.options
+
+            {
+              plugins.telescope.enable = true;
+            }
           ];
-
-          plugins.telescope.enable = true;
-        };
-
-        minimal = {
-          _module.args.pkgs = pkgs;
-
-          imports = [
-            self.nixvimModules.keymaps
-            self.nixvimModules.options
-          ];
-
-          colorschemes.nord.enable = true;
         };
       };
 
       packages.nixvim = config.nixvimConfigurations.ide.config.build.package;
-      packages.nixvimMinimal = config.nixvimConfigurations.minimal.config.build.package;
     };
 }
