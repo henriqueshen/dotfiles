@@ -21,9 +21,10 @@
       imports = [
         self.homeModules.homeCommon
 
+        self.homeModules.zsh
         self.homeModules.git
         self.homeModules.tmux
-        self.homeModules.zsh
+        self.homeModules.neovim
       ];
 
       home = {
