@@ -1,6 +1,7 @@
 { inputs, ... }: {
   imports = [
     inputs.disko.flakeModules.default
+    inputs.nixvim.flakeModules.default
     inputs.home-manager.flakeModules.home-manager
   ];
 
