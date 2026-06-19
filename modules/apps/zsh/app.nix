@@ -54,8 +54,8 @@
       inherit pkgs;
 
       zshAliases = {
-        ngs = "sudo ${lib.getExe' pkgs.nix "nix-collect-garbage"}-d";
-        ngu = "${lib.getExe' pkgs.nix "nix-collect-garbage"}-d";
+        ngs = "sudo ${lib.getExe' pkgs.nix "nix-collect-garbage"} -d";
+        ngu = "${lib.getExe' pkgs.nix "nix-collect-garbage"} -d";
         cd = "${lib.getExe pkgs.zoxide}";
         ls = "${lib.getExe pkgs.eza} --hyperlink --git --all";
         lst = "${lib.getExe pkgs.eza} --tree --recurse --level 2 --hyperlink --git --all";
