@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixvimModules.theme = { pkgs, lib, ... }: {
+  flake.nixvimModules.colorscheme = { pkgs, lib, ... }: {
     colorschemes = {
       cyberdream.enable = true;
       settings = {

@@ -48,6 +48,7 @@
           modules = [
             self.nixvimModules.keymaps
             self.nixvimModules.options
+            self.nixvimModules.colorscheme
 
             {
               plugins.telescope.enable = true;
