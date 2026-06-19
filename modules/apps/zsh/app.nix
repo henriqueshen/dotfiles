@@ -54,8 +54,8 @@
       inherit pkgs;
 
       zshAliases = {
-        hms = "nix run home-manager -- switch --flake ~/.config/nix#hshen2908";
-        start = "start-hyprland";
+        ngs = "sudo nix-collect-garbage -d";
+        ngu = "nix-collect-garbage -d";
         ls = "eza --hyperlink --git --all";
         lst = "eza --tree --recurse --level 2 --hyperlink --git --all";
         lsa =
@@ -75,7 +75,14 @@
         content = ''
           export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
 
-          ZSH_THEME="robbyrussell"
+          nrs() {
+            if [ -z "$1" ]; then
+              echo "Usage: nrs <flake-target>"
+              return 1
+            fi
+
+            nixos-rebuild switch --flake ".#$1"
+          }
 
           plugins=(
             git
