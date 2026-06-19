@@ -74,8 +74,6 @@
 
           prefer-no-csd = { };
 
-          layout.gaps = 5;
-
           binds =
             let
               inherit (lib) getExe getExe';
