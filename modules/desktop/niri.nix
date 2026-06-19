@@ -72,6 +72,8 @@
             };
           };
 
+          prefer-no-csd = { };
+
           layout.gaps = 5;
 
           binds =
@@ -88,8 +90,9 @@
             in
             {
               "Mod+Shift+Slash".show-hotkey-overlay = _: { };
-              "Mod+T".spawn = [ terminal ];
+              "Mod+Return".spawn = [ terminal ];
               "Mod+R".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
+              "Mod+C".spawn = [ browser ];
               # "Mod+D".spawn = [ fuzzel ];
               "Super+Alt+L".spawn = [ swaylock ];
               "Super+Alt+S" = _: {
