@@ -61,19 +61,19 @@
           + "--modified --git --extended --all";
       };
 
-      # runtimePkgs = [
-      #   pkgs.oh-my-zsh
-      #   pkgs.zsh-autosuggestions
-      #   pkgs.zsh-syntax-highlighting
-      #   pkgs.zsh-vi-mode
-      #
-      #   pkgs.nix
-      #   pkgs.nixos-rebuild
-      #
-      #   pkgs.starship
-      #   pkgs.zoxide
-      #   pkgs.eza
-      # ];
+      runtimePkgs = [
+        pkgs.oh-my-zsh
+        pkgs.zsh-autosuggestions
+        pkgs.zsh-syntax-highlighting
+        pkgs.zsh-vi-mode
+
+        pkgs.nix
+        pkgs.nixos-rebuild
+
+        pkgs.starship
+        pkgs.zoxide
+        pkgs.eza
+      ];
 
       zshrc = {
         content = ''
