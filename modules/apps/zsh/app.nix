@@ -56,7 +56,6 @@
       zshAliases = {
         ngs = "sudo ${lib.getExe' pkgs.nix "nix-collect-garbage"} -d";
         ngu = "${lib.getExe' pkgs.nix "nix-collect-garbage"} -d";
-        cd = "${lib.getExe pkgs.zoxide}";
         ls = "${lib.getExe pkgs.eza} --hyperlink --git --all";
         lst = "${lib.getExe pkgs.eza} --tree --recurse --level 2 --hyperlink --git --all";
         lsa =
@@ -80,8 +79,6 @@
 
       zshrc = {
         content = ''
-          export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
-
           nrs() {
             if [ -z "$1" ]; then
               echo "Usage: nrs <flake-target>"
@@ -96,7 +93,7 @@
             sudo
           )
 
-          source $ZSH/oh-my-zsh.sh
+          source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
 
           autoload -Uz compinit
           compinit
@@ -104,6 +101,8 @@
           source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
           source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+          eval "$(zoxide init zsh)"
         '';
       };
     };
