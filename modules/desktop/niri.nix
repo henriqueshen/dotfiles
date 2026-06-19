@@ -228,7 +228,7 @@
               "Mod+Shift+F".fullscreen-window = _: { };
               "Mod+M".maximize-window-to-edges = _: { };
               "Mod+Ctrl+F".expand-column-to-available-width = _: { };
-              "Mod+C".center-column = _: { };
+              # "Mod+C".center-column = _: { };
               "Mod+Ctrl+C".center-visible-columns = _: { };
               "Mod+Minus".set-column-width = "-10%";
               "Mod+Equal".set-column-width = "+10%";
