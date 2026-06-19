@@ -102,7 +102,7 @@
           source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-          eval "$(zoxide init zsh)"
+          eval "$(${lib.getExe pkgs.zoxide} init zsh --cmd cd)"
         '';
       };
     };
