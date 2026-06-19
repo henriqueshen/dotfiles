@@ -16,13 +16,10 @@
       };
 
       config = {
-        programs.zsh = {
-          enable = true;
-
-          package = (
-            self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap config.programs.zsh.customSettings
-          );
-        };
+        programs.zsh.enable = true;
+        environment.systemPackages = [
+          (self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap config.programs.zsh.customSettings)
+        ];
       };
     };
 
