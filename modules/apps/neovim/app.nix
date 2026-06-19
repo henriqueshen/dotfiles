@@ -46,8 +46,6 @@
           inherit system;
 
           modules = [
-            { _module.args.pkgs = pkgs; }
-
             self.nixvimModules.keymaps
             self.nixvimModules.options
 
