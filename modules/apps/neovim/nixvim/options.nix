@@ -1,7 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixvimModules.options = {
-
+  flake.nixvimModules.options = { pkgs, lib, ... }: {
     opts = {
       jumpoptions = "stack,view";
       number = true;

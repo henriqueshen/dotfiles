@@ -43,6 +43,8 @@
 
       nixvimConfigurations = {
         ide = {
+          _module.args.pkgs = pkgs;
+
           imports = [
             self.nixvimModules.keymaps
             self.nixvimModules.options
@@ -52,6 +54,8 @@
         };
 
         minimal = {
+          _module.args.pkgs = pkgs;
+
           imports = [
             self.nixvimModules.keymaps
             self.nixvimModules.options
@@ -61,7 +65,7 @@
         };
       };
 
-      packages.nixvim = config.nixvimConfigurations.ide.wrapped;
-      packages.nixvimMinimal = config.nixvimConfigurations.minimal.wrapped;
+      packages.nixvim = config.nixvimConfigurations.ide.config.build.package;
+      packages.nixvimMinimal = config.nixvimConfigurations.minimal.config.build.package;
     };
 }

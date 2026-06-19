@@ -1,5 +1,5 @@
 { self, inputs, ... }:
 {
-  flake.nixvimModules.keymaps = {
+  flake.nixvimModules.keymaps = { pkgs, lib, ... }: {
   };
 }
