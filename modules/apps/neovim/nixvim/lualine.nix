@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixvimModules.lualine = { pkgs, lib, ... }: {
-    colorschemes.lualine = {
+    plugins.lualine = {
       enable = true;
       settings = {
         options = {
