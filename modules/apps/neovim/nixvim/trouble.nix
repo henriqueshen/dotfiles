@@ -3,10 +3,10 @@
   flake.nixvimModules.trouble = { pkgs, lib, ... }: {
     plugins.trouble = {
       enable = true;
-    };
-    lazyLoad = {
-      enable = true;
-      settings.cmd = [ "Trouble" ];
+      lazyLoad = {
+        enable = true;
+        settings.cmd = [ "Trouble" ];
+      };
     };
 
     keymaps = [
