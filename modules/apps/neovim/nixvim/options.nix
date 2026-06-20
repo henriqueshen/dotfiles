@@ -20,6 +20,8 @@
       splitright = true;
       splitbelow = true;
       swapfile = false;
+      foldlevel = 99;
+      foldlevelstart = 99;
     };
     clipboard.register = "unnamedplus";
   };
