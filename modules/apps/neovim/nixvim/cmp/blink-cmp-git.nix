@@ -1,6 +1,9 @@
 { self, inputs, ... }:
 {
   flake.nixvimModules.blink-cmp-git = { pkgs, lib, ... }: {
+    plugins.blink-cmp-git = {
+      enable = true;
+    };
     plugins.blink-cmp = {
       enable = true;
 
