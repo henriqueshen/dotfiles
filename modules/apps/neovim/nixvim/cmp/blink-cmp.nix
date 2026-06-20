@@ -1,0 +1,41 @@
+{ self, inputs, ... }:
+{
+  flake.nixvimModules.blink-cmp = { pkgs, lib, ... }: {
+    plugins.blink-cmp = {
+      enable = true;
+
+      settings = {
+        appearance = {
+          nerd_font_variant = "normal";
+          use_nvim_cmp_as_default = true;
+        };
+        completion = {
+          accept = {
+            auto_brackets = {
+              enabled = true;
+              semantic_token_resolution = {
+                enabled = true;
+              };
+            };
+          };
+          documentation = {
+            auto_show = true;
+          };
+        };
+        keymap = {
+          preset = "super-tab";
+        };
+        signature = {
+          enabled = true;
+        };
+      };
+
+      settings.sources.default = [
+        "lsp"
+        "path"
+        "buffer"
+        "git"
+      ];
+    };
+  };
+}

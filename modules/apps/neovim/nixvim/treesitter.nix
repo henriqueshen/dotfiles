@@ -3,8 +3,8 @@
   flake.nixvimModules.treesitter =
     {
       pkgs,
-      config,
       lib,
+      config,
       ...
     }:
     {

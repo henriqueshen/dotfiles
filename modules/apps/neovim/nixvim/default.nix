@@ -6,10 +6,19 @@
       self.nixvimModules.options
       self.nixvimModules.colorscheme
 
+      self.nixvimModules.lazy-loading
+
       self.nixvimModules.lsp
+      self.nixvimModules.cmp
       self.nixvimModules.treesitter
 
       self.nixvimModules.lualine
+      self.nixvimModules.which-key
+      self.nixvimModules.snacks
+      self.nixvimModules.trouble
+      self.nixvimModules.flash
+      self.nixvimModules.tmux-navigator
+      self.nixvimModules.quickfix
     ];
   };
 }
