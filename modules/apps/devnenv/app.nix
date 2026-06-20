@@ -23,7 +23,7 @@
 
       programs.zsh = {
         enable = true;
-        initExtra = ''
+        initContent = lib.mkAfter ''
           eval "$(devenv hook zsh)"
         '';
       };
