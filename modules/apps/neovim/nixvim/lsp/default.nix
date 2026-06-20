@@ -8,7 +8,7 @@
 
     plugins.lspconfig.enable = true;
 
-    keymaps = { };
-    lsp.keymaps = { };
+    keymaps = [ ];
+    lsp.keymaps = [ ];
   };
 }
