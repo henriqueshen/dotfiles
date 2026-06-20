@@ -4,7 +4,7 @@
     lsp.servers = {
       lua_ls = {
         enable = true;
-        settings.Lua.diagnostics.globals = [ "vim" ];
+        config.Lua.diagnostics.globals = [ "vim" ];
       };
     };
   };
