@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
-  flake.nixvimModules.bqf = { pkgs, lib, ... }: {
-    plugins.bqf = {
+  flake.nixvimModules.nvim-bqf = { pkgs, lib, ... }: {
+    plugins.nvim-bqf = {
       enable = true;
       lazyLoad = {
         enable = true;

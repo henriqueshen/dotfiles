@@ -19,7 +19,7 @@
       self.nixvimModules.flash
       self.nixvimModules.tmux-navigator
       self.nixvimModules.quicker
-      self.nixvimModules.bqf
+      self.nixvimModules.nvim-bqf
     ];
   };
 }
