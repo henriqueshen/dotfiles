@@ -6,10 +6,7 @@
       self.nixvimModules.lsp-lua
     ];
 
-    lsp = {
-      enable = true;
-    };
-
     keymaps = { };
+    lsp.keymaps = { };
   };
 }
