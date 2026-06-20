@@ -2,8 +2,13 @@
 {
   flake.nixvimModules.snacks = { pkgs, lib, ... }: {
     extraPackages = with pkgs; [
-      pokemon-colorscripts
       git
+      fd
+      ripgrep
+      fzf
+      chafa
+
+      pokemon-colorscripts
     ];
 
     plugins.snacks = {
