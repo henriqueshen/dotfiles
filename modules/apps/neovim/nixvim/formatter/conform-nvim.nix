@@ -9,8 +9,9 @@
           lsp_format = "fallback";
           timeout_ms = 500;
         };
-        formatters = { };
-        formatter_by_ft = { };
+        # formatters = {
+        #
+        # };
       };
     };
   };
