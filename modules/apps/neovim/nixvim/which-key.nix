@@ -13,6 +13,10 @@
           __unkeyed-1 = "<leader>f";
           group = "Find";
         }
+        {
+          __unkeyed-1 = "<leader>q";
+          group = "Quickfix";
+        }
       ];
     };
   };

@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixvimModules.lsp = { pkgs, lib, ... }: {
+  flake.nixvimModules.lsp-nix = { pkgs, lib, ... }: {
     lsp = {
       enable = true;
     };
