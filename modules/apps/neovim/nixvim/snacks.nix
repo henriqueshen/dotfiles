@@ -97,9 +97,6 @@
                 end
               '';
             }
-            {
-              section = "startup";
-            }
           ];
         };
       };
