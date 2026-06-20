@@ -1,10 +1,10 @@
 { self, inputs, ... }:
 {
   flake.nixvimModules.snacks = { pkgs, lib, ... }: {
-    extraPackages = [
-      pkgs.pokemon-colorscripts
-      pkgs.colorscript
-      pkgs.git
+    extraPackages = with pkgs; [
+      pokemon-colorscripts
+      dt-shell-color-scripts
+      git
     ];
 
     plugins.snacks = {
@@ -59,7 +59,7 @@
             {
               pane = 2;
               section = "terminal";
-              cmd = "${lib.getExe pkgs.colorscript} -e square";
+              cmd = "${lib.getExe pkgs.dt-shell-color-scripts} -e square";
               height = 5;
               padding = 1;
             }
