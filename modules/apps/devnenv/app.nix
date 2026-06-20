@@ -16,7 +16,7 @@
 
       programs.bash = {
         enable = true;
-        interactiveShellInit = ''
+        initExtra = ''
           eval "$(devenv hook bash)"
         '';
       };
