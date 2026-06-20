@@ -9,6 +9,9 @@
       self.nixvimModules.lazy-loading
 
       self.nixvimModules.lsp
+      self.nixvimModules.linter
+      self.nixvimModules.formatter
+      self.nixvimModules.dap
       self.nixvimModules.cmp
       self.nixvimModules.treesitter
 
