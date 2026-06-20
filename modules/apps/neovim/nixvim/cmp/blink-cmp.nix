@@ -69,10 +69,6 @@
 
           "<Tab>" = [
             "snippet_forward"
-            lib.nixvim.mkRaw
-            "function() -- if you are using Neovim's native inline completions
-						return vim.lsp.inline_completion.get()
-					end"
             "fallback"
           ];
           "<S-Tab>" = [
