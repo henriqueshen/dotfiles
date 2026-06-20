@@ -3,7 +3,6 @@
   flake.nixvimModules.snacks = { pkgs, lib, ... }: {
     extraPackages = with pkgs; [
       pokemon-colorscripts
-      dt-shell-color-scripts
       git
     ];
 
@@ -55,13 +54,6 @@
               height = 10;
               padding = 1;
               indent = 18;
-            }
-            {
-              pane = 2;
-              section = "terminal";
-              cmd = "${lib.getExe pkgs.dt-shell-color-scripts} -e square";
-              height = 5;
-              padding = 1;
             }
             {
               section = "keys";
