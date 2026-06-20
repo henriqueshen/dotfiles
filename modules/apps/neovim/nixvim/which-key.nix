@@ -15,6 +15,10 @@
             group = "Find";
           }
           {
+            __unkeyed-1 = "<leader>l";
+            group = "LSP";
+          }
+          {
             __unkeyed-1 = "<leader>q";
             group = "Quickfix";
           }
