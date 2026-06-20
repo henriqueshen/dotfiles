@@ -4,20 +4,22 @@
     plugins.which-key = {
       enable = true;
 
-      spec = [
-        {
-          __unkeyed-1 = "<leader>b";
-          group = "Buffers";
-        }
-        {
-          __unkeyed-1 = "<leader>f";
-          group = "Find";
-        }
-        {
-          __unkeyed-1 = "<leader>q";
-          group = "Quickfix";
-        }
-      ];
+      settings = {
+        spec = [
+          {
+            __unkeyed-1 = "<leader>b";
+            group = "Buffers";
+          }
+          {
+            __unkeyed-1 = "<leader>f";
+            group = "Find";
+          }
+          {
+            __unkeyed-1 = "<leader>q";
+            group = "Quickfix";
+          }
+        ];
+      };
     };
   };
 }
