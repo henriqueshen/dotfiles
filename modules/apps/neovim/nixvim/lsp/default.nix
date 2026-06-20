@@ -6,6 +6,18 @@
       self.nixvimModules.lsp-lua
     ];
 
+    extraConfigLua = ''
+      vim.diagnostic.config({
+        virtual_text = {
+          spacing = 4,
+          prefix = "●",
+          source = "if_many",
+        },
+        severity_sort = true,
+        update_in_insert = true,
+      })
+    '';
+
     plugins.lspconfig.enable = true;
     keymaps = [
       {
@@ -102,6 +114,14 @@
         action = lib.nixvim.mkRaw "function() vim.lsp.buf.code_action() end";
         options = {
           desc = "Select a code action";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>lt";
+        action = lib.nixvim.mkRaw "function() vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines }) end";
+        options = {
+          desc = "Toggle diagnostic virtual lines";
         };
       }
     ];

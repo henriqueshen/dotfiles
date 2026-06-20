@@ -7,6 +7,7 @@
       ripgrep
       fzf
       chafa
+      lazygit
 
       pokemon-colorscripts
     ];
@@ -22,8 +23,12 @@
         quickfile.enabled = true;
         scope.enabled = true;
         scroll.enabled = false;
-        statuscolumn.enabled = true;
         words.enabled = true;
+
+        statuscolumn = {
+          enabled = true;
+          signcolumn = true;
+        };
 
         notifier = {
           enabled = true;
