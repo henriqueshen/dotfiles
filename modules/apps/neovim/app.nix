@@ -14,7 +14,7 @@
     }:
     {
       environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim
+        self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
       ];
     };
 
@@ -27,7 +27,7 @@
     }:
     {
       home.packages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim
+        self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
       ];
     };
 
@@ -51,6 +51,6 @@
         };
       };
 
-      packages.nixvim = config.nixvimConfigurations.ide.config.build.package;
+      packages.neovim = config.nixvimConfigurations.ide.config.build.package;
     };
 }
