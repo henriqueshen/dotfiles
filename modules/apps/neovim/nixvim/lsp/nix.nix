@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
   flake.nixvimModules.lsp-nix = { pkgs, lib, ... }: {
-    servers = {
+    lsp.servers = {
       nixd.enable = true;
     };
   };
