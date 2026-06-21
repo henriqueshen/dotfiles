@@ -9,6 +9,7 @@
         self.nixosModules.hshen2908Secrets
 
         self.nixosModules.zsh
+        self.nixosModules.docker
       ];
 
       users.users."hshen2908" = {
@@ -17,6 +18,7 @@
         extraGroups = [
           "networkmanager"
           "wheel"
+          "docker"
         ];
         shell = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
         packages = with pkgs; [ ];
