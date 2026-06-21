@@ -4,6 +4,7 @@
     imports = [
       self.nixvimModules.lsp-nix
       self.nixvimModules.lsp-lua
+      self.nixvimModules.lsp-rust
     ];
 
     extraConfigLua = ''
