@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim.url = "github:nix-community/nixvim";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
