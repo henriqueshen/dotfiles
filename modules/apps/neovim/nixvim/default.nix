@@ -20,7 +20,7 @@
       self.nixvimModules.snacks
       self.nixvimModules.trouble
       self.nixvimModules.flash
-      self.nixvimModules.tmux-navigator
+      # self.nixvimModules.tmux-navigator
       self.nixvimModules.gitsigns
       self.nixvimModules.quicker
       self.nixvimModules.nvim-bqf
