@@ -18,9 +18,8 @@
           "networkmanager"
           "wheel"
         ];
-        shell = pkgs.zsh;
+        shell = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
         packages = with pkgs; [ ];
       };
-      programs.zsh.enable = true;
     };
 }

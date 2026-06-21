@@ -7,20 +7,9 @@
       ...
     }:
     {
-      options.programs.zsh = {
-        customSettings = lib.mkOption {
-          type = lib.types.attrs;
-          default = { };
-          description = "zsh settings to override on top of the default package wrapper";
-        };
-      };
-
-      config = {
-        programs.zsh.enable = true;
-        environment.systemPackages = [
-          (self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap config.programs.zsh.customSettings)
-        ];
-      };
+      environment.systemPackages = [
+        self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap
+      ];
     };
 
   flake.homeModules.zsh =
@@ -31,18 +20,9 @@
       ...
     }:
     {
-      options.programs.zsh = {
-        customSettings = lib.mkOption {
-          type = lib.types.attrs;
-          default = { };
-          description = "zsh settings to override on top of the default package wrapper";
-        };
-      };
-
-      config = {
-        home.packages = [
-          (self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap config.programs.zsh.customSettings)
-        ];
+      programs.zsh = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap;
       };
     };
 
@@ -61,18 +41,19 @@
           + "--modified --git --extended --all";
       };
 
-      runtimePkgs = [
-        pkgs.oh-my-zsh
-        pkgs.zsh-autosuggestions
-        pkgs.zsh-syntax-highlighting
-        pkgs.zsh-vi-mode
+      runtimePkgs = with pkgs; [
+        oh-my-zsh
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        zsh-vi-mode
 
-        pkgs.nix
-        pkgs.nixos-rebuild
+        nix
+        nixos-rebuild
 
-        pkgs.starship
-        pkgs.zoxide
-        pkgs.eza
+        starship
+        zoxide
+        eza
+        devenv
       ];
 
       zshrc = {
@@ -102,6 +83,7 @@
 
           eval "$(${lib.getExe pkgs.starship} init zsh)"
           eval "$(${lib.getExe pkgs.zoxide} init zsh --cmd cd)"
+          eval "$(${lib.getExe pkgs.devenv} hook zsh)"
         '';
       };
     };
