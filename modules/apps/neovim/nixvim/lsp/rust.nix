@@ -11,12 +11,6 @@
       enable = true;
       settings = {
         server = {
-          # cmd = [
-          #   "rustup"
-          #   "run"
-          #   "nightly"
-          #   "rust-analyzer"
-          # ];
           default_settings = {
             rust-analyzer = {
               cargo = {
@@ -32,7 +26,6 @@
               };
             };
           };
-          standalone = false;
         };
       };
     };

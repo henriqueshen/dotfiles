@@ -19,6 +19,7 @@
       backspace = "indent,eol,start";
       splitright = true;
       splitbelow = true;
+      undofile = true;
       swapfile = false;
       foldlevel = 99;
       foldlevelstart = 99;
