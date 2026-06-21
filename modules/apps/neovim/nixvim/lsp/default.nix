@@ -5,6 +5,8 @@
       self.nixvimModules.lsp-nix
       self.nixvimModules.lsp-lua
       self.nixvimModules.lsp-rust
+      self.nixvimModules.lsp-toml
+      self.nixvimModules.lsp-opentofu
     ];
 
     extraConfigLua = ''
