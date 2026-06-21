@@ -8,7 +8,7 @@
     }:
     {
       environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap
+        self.packages.${pkgs.stdenv.hostPlatform.system}.zsh
       ];
     };
 
@@ -22,7 +22,7 @@
     {
       programs.zsh = {
         enable = true;
-        package = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh.wrap;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
       };
     };
 
