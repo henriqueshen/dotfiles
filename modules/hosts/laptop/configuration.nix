@@ -5,7 +5,7 @@
       imports = [
         self.nixosModules.configurationCommon
 
-        self.nixosModules.theme
+        # self.nixosModules.theme
 
         self.nixosModules.hshen2908
 
