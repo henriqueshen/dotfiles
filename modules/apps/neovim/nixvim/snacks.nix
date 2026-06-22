@@ -12,6 +12,27 @@
       pokemon-colorscripts
     ];
 
+    extraConfigLua = ''
+      local function make_snacks_borderless()
+        local my_bg = "#000000" 
+
+        local hl_groups = {
+          "SnacksPickerBorder",
+          "SnacksPickerInputBorder",
+          "SnacksPickerListBorder",
+          "SnacksPickerPreviewBorder",
+        }
+
+        for _, group in ipairs(hl_groups) do
+          vim.api.nvim_set_hl(0, group, { fg = my_bg, bg = my_bg })
+        end
+      end
+
+      make_snacks_borderless()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = make_snacks_borderless,
+      })
+    '';
     plugins.snacks = {
       enable = true;
       settings = {
@@ -47,6 +68,9 @@
             explorer = {
               layout.layout.position = "right";
             };
+          };
+          layout = {
+            preset = "default";
           };
         };
 
