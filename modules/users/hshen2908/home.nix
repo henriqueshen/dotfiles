@@ -25,6 +25,7 @@
         self.homeModules.git
         self.homeModules.tmux
         self.homeModules.neovim
+        self.homeModules.doppler
       ];
 
       home = {
