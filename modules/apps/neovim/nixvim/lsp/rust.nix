@@ -5,6 +5,7 @@
       rust-analyzer
       cargo
       rustc
+      rustfmt
     ];
 
     plugins.rustaceanvim = {
