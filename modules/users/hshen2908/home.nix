@@ -26,6 +26,8 @@
         self.homeModules.tmux
         self.homeModules.neovim
         self.homeModules.doppler
+
+        self.homeModules.discord
       ];
 
       home = {
