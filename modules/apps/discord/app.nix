@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.homeModules.disord =
+  flake.homeModules.discord =
     { config, pkgs, ... }:
     {
       imports = [
