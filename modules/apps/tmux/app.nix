@@ -103,6 +103,8 @@
       ];
 
       configAfter = ''
+        set -g extended-keys on
+
         bind -n M-0 select-window -t 0
         bind -n M-1 select-window -t 1
         bind -n M-2 select-window -t 2
