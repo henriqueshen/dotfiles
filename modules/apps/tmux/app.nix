@@ -104,6 +104,7 @@
 
       configAfter = ''
         set -g extended-keys on
+        set -g extended-keys-format csi-u
 
         bind -n M-0 select-window -t 0
         bind -n M-1 select-window -t 1
