@@ -72,6 +72,10 @@
             };
           };
 
+          layout = {
+            gaps = 0;
+          };
+
           prefer-no-csd = { };
 
           binds =
