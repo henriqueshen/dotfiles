@@ -27,6 +27,7 @@
         self.homeModules.neovim
         self.homeModules.doppler
         self.homeModules.pi
+        self.homeModules.codex
         self.homeModules.claude-code
 
         self.homeModules.discord
