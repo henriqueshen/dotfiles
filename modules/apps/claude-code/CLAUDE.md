@@ -11,6 +11,7 @@
 - Use installed plugin skills eagerly (superpowers: brainstorming, TDD, systematic-debugging, writing-plans; mattpocock: grilling, diagnosing-bugs, domain-modeling; etc.). If a skill *might* apply, invoke it — prefer a false positive over skipping one.
 - Delegate substantial well-scoped work to subagents (Explore for search, Plan for architecture, implementation workers, code-reviewer agents) and orchestrate them; run independent tasks in parallel.
 - Cooperative review: agents see problems from different perspectives, so reviews go both ways — an implementer's work is reviewed by another agent (or Codex rescue as a second opinion), and the implementer in turn evaluates the review, pushes back on incorrect feedback, and corrects real issues. Iterate until both perspectives agree before presenting work as done.
+- Where superpowers and mattpocock skills overlap, combine them rather than picking one: superpowers TDD drives the red–green loop with mattpocock tdd's seam discipline (agree test seams with me first); official code-review hunts bugs, mattpocock code-review checks standards + spec conformance.
 
 ## Linear (project management)
 - I manage work in Linear. At the start of a coding task, look up the relevant Linear issue/project for context.
@@ -30,6 +31,14 @@ Every document of a given type uses the same template: same section names, same 
 - **Linear issue** — title in imperative mood. Description sections: `Problem`, `Acceptance criteria` (checklist mapping to spec requirements), `Links` (spec, PR, related issues).
 - **Commit** — Conventional Commits (`feat:`, `fix:`, `chore:`, …), small and focused. Mention the Linear issue ID in the message (e.g. `ABC-123` in the body, or `Fixes ABC-123` on the final commit) so the GitHub integration links the commit and auto-transitions the issue.
 - **PR** — sections: `Summary`, `Linked issue & spec`, `Testing` (what was run and observed).
+- **Domain files** — each repo keeps `CONTEXT.md` (domain glossary) and `docs/adr/` (architecture decision records), maintained via the domain-modeling skill; specs and tests use that vocabulary.
+- The mattpocock to-spec/to-tickets flow publishes to Linear (configure once per repo with `/setup-matt-pocock-skills`); specs it produces still follow the template above — my template wins over any skill's built-in format.
+
+## Multi-repo projects: root workspace pattern
+- A multi-repo project lives under a root workspace repo (e.g. `~/projects/realms`) that tracks only cross-cutting docs — `docs/specs/`, `docs/adr/`, `docs/agents/issue-tracker.md`, system-level `CONTEXT.md` — while the child repos nest inside it as independent git repos, untracked by the root (whitelist `.gitignore`).
+- Skill setup (issue tracker, triage labels, domain docs) is done once at the root; child repos inherit it via parent-directory CLAUDE.md discovery and need no per-repo setup.
+- System-wide design/architecture/discussion sessions run from the root, where all child code is readable; don't modify child repos from a root session — implementation happens in the owning repo on its own branch/issue.
+- Specs affecting a single repo live in that repo's `docs/specs/`; only cross-cutting design goes in the root.
 
 ## Code style
 - Write modern, idiomatic, maintainable code following current best practices for the language at hand.
