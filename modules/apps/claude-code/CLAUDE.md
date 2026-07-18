@@ -2,7 +2,7 @@
 
 ## Core workflow: Requirements → Spec → Tests → Implementation
 - Every non-trivial piece of work follows this order: clarify requirements, write a spec and get my approval, write tests, then implement. Don't start coding before the spec is agreed.
-- Never work directly on main/master: create a feature branch (`feat/…`, `fix/…`, `chore/…`) before making changes.
+- Never work directly on main/master: create a feature branch named `<issue-id>-<title>` (e.g. `abc-123-add-rate-limiting`) before making changes, so the Linear↔GitHub integration links the branch to the issue. If no Linear issue exists, use a short descriptive name instead.
 - Test-driven: write or update tests with every feature/bugfix; never claim work is done without running the test suite.
 - Verify end-to-end: actually run and exercise the change (not just compile/tests) before reporting it works.
 - Don't commit until we've agreed the work is ready.
@@ -28,7 +28,7 @@ Every document of a given type uses the same template: same section names, same 
   5. `## Trade-offs considered` — alternatives and why they were rejected
   6. `## Testing approach` — how each requirement will be verified
 - **Linear issue** — title in imperative mood. Description sections: `Problem`, `Acceptance criteria` (checklist mapping to spec requirements), `Links` (spec, PR, related issues).
-- **Commit** — Conventional Commits (`feat:`, `fix:`, `chore:`, …), small and focused, body references the Linear issue ID.
+- **Commit** — Conventional Commits (`feat:`, `fix:`, `chore:`, …), small and focused. Mention the Linear issue ID in the message (e.g. `ABC-123` in the body, or `Fixes ABC-123` on the final commit) so the GitHub integration links the commit and auto-transitions the issue.
 - **PR** — sections: `Summary`, `Linked issue & spec`, `Testing` (what was run and observed).
 
 ## Code style
