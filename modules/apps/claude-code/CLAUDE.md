@@ -1,38 +1,43 @@
 # Global Instructions
 
+**If you are a subagent executing a delegated task:** ignore the orchestration, Linear, and workflow-gating rules below — execute your prompt directly and report back. Code style, testing discipline, and document templates still apply.
+
 ## Core workflow: Requirements → Spec → Tests → Implementation
-- Every non-trivial piece of work follows this order: clarify requirements, write a spec and get my approval, write tests, then implement. Don't start coding before the spec is agreed.
+- Non-trivial work — new features, behavior changes, anything requiring design decisions — follows this order: clarify requirements, write a spec and get my approval, write tests, then implement. Don't start coding before the spec is agreed.
+- Trivial work — typo/doc fixes, mechanical refactors, pure Q&A — skips the spec/approval gate, but tests and end-to-end verification still apply to any code change.
 - Never work directly on main/master: create a feature branch named `<issue-id>-<title>` (e.g. `abc-123-add-rate-limiting`) before making changes, so the Linear↔GitHub integration links the branch to the issue. If no Linear issue exists, use a short descriptive name instead.
 - Test-driven: write or update tests with every feature/bugfix; never claim work is done without running the test suite.
+- Never be lazy about tests: write real unit and integration tests covering behavior, edge cases, and error paths — no placeholder assertions, no skipping, weakening, or stubbing out tests to get a green run. If a requirement is hard to test, raise it rather than silently leaving it untested.
 - Verify end-to-end: actually run and exercise the change (not just compile/tests) before reporting it works.
 - Don't commit until we've agreed the work is ready.
 
 ## Skills & subagents
 - Use installed plugin skills eagerly (superpowers: brainstorming, TDD, systematic-debugging, writing-plans; mattpocock: grilling, diagnosing-bugs, domain-modeling; etc.). If a skill *might* apply, invoke it — prefer a false positive over skipping one.
 - Delegate substantial well-scoped work to subagents (Explore for search, Plan for architecture, implementation workers, code-reviewer agents) and orchestrate them; run independent tasks in parallel.
+- Subagent model selection: for substantial implementation, diagnosis, and review work, prefer the codex plugin's configured frontier model (currently OpenAI GPT-5.6 Sol) with reasoning effort matched to the task, so implementer and reviewer are peers in intelligence and can meaningfully review each other. Defer to lighter/other models for tasks that are simple, structured, and well defined (searches, mechanical edits, boilerplate).
 - Cooperative review: agents see problems from different perspectives, so reviews go both ways — an implementer's work is reviewed by another agent (or Codex rescue as a second opinion), and the implementer in turn evaluates the review, pushes back on incorrect feedback, and corrects real issues. Iterate until both perspectives agree before presenting work as done.
+- Reviews are strict, never rubber-stamps: hold a high bar for correctness, quality, test coverage, and spec conformance in every review, comment, and acceptance decision. Don't approve just to converge or to be agreeable — demand evidence (test runs, reproduction) over assertions, and flag real problems even late in an iteration. The same bar applies to accepting work from subagents and to feedback received.
+- You (the main agent) stay in the review loop as orchestrator — never leave it to two independent agents new to the context. You carry the overarching goal and the agreed spec: pass that intent to implementer and reviewer, arbitrate their feedback, accept valid comments/suggestions/criticism, and reject feedback that conflicts with the agreed design. The design phase exists to iron out intent up front, so subagents work from a clear spec rather than guessing.
 - Where superpowers and mattpocock skills overlap, combine them rather than picking one: superpowers TDD drives the red–green loop with mattpocock tdd's seam discipline (agree test seams with me first); official code-review hunts bugs, mattpocock code-review checks standards + spec conformance.
 
 ## Linear (project management)
 - I manage work in Linear. At the start of a coding task, look up the relevant Linear issue/project for context.
+- Use the Linear resource that matches the altitude of the work: **initiatives** for system-wide efforts spanning multiple projects (architecture programs, platform-level goals); **projects** for features or design workstreams spanning multiple issues, with specs mirrored as project documents; **issues** for concrete dev tasks, bugs, and discovered work; **comments** for progress and decisions. Link them hierarchically (issue → project → initiative) so design work and implementation stay connected.
 - Proactively suggest Linear actions — creating issues for new tasks or discovered bugs, updating status, adding comments, linking PRs/specs — but always propose and confirm with me before writing to Linear.
 - When we finish or change scope, prompt me to update the corresponding issue.
+- Use Linear documents for whatever document type fits the work — specs, design docs, ADR summaries, research notes, meeting/decision records — attached to the appropriate project or initiative and linked from the related issues. In-repo markdown remains the canonical copy where a template defines one (e.g. specs); the Linear document mirrors it.
+- Keep idea documents: potential features, brainstorm outcomes, and directions considered but not (yet) pursued are worth recording — as Linear documents on the relevant project or initiative (cross-cutting ones in the root workspace repo). Capture them when they come up so future planning can draw on them; a short freeform note with links is enough, no full spec template needed.
 
 ## Document templates (always follow these — consistent sections, naming, linking)
 Every document of a given type uses the same template: same section names, same order, same linking style. Don't improvise new structures.
 
-- **Spec** — `docs/specs/YYYY-MM-DD-<topic>.md` in-repo, mirrored/linked into the Linear issue or project document. Sections, in order:
-  1. `## Goal` — one paragraph, what and why
-  2. `## Context` — current state, links to related specs/issues
-  3. `## Requirements` — numbered, testable statements
-  4. `## Design` — architecture and flow; use mermaid diagrams (sequence, flowchart, ER) whenever structure is easier shown than told
-  5. `## Trade-offs considered` — alternatives and why they were rejected
-  6. `## Testing approach` — how each requirement will be verified
-- **Linear issue** — title in imperative mood. Description sections: `Problem`, `Acceptance criteria` (checklist mapping to spec requirements), `Links` (spec, PR, related issues).
+- **Spec** — `docs/specs/YYYY-MM-DD-<topic>.md` in-repo, mirrored/linked into the Linear issue or project document. Use the mattpocock to-spec template, applied identically in every repo and project — sections, in order: `## Problem Statement`, `## Solution`, `## User Stories`, `## Implementation Decisions`, `## Testing Decisions`, `## Out of Scope`, `## Further Notes`, plus a final `## Links` section (issue, project, related specs/ADRs). Use mermaid diagrams (sequence, flowchart, ER) in Implementation Decisions whenever structure is easier shown than told.
+- Cross-reference with restraint: gather related links once in the `Links` section — don't pepper prose with per-item references ("per R1", "see US-3") unless a specific traceability need demands it.
+- **Linear issue** — title in imperative mood. Description sections: `Problem`, `Acceptance criteria` (checklist of testable outcomes), `Links` (spec, PR, related issues).
 - **Commit** — Conventional Commits (`feat:`, `fix:`, `chore:`, …), small and focused. Mention the Linear issue ID in the message (e.g. `ABC-123` in the body, or `Fixes ABC-123` on the final commit) so the GitHub integration links the commit and auto-transitions the issue.
 - **PR** — sections: `Summary`, `Linked issue & spec`, `Testing` (what was run and observed).
 - **Domain files** — each repo keeps `CONTEXT.md` (domain glossary) and `docs/adr/` (architecture decision records), maintained via the domain-modeling skill; specs and tests use that vocabulary.
-- The mattpocock to-spec/to-tickets flow publishes to Linear (configure once per repo with `/setup-matt-pocock-skills`); specs it produces still follow the template above — my template wins over any skill's built-in format.
+- The mattpocock to-spec/to-tickets flow publishes to Linear (configure once per repo with `/setup-matt-pocock-skills`). Any skill producing a document conforms to the templates above — consistency across repos and projects wins over a skill's built-in variations.
 
 ## Multi-repo projects: root workspace pattern
 - A multi-repo project lives under a root workspace repo (e.g. `~/projects/realms`) that tracks only cross-cutting docs — `docs/specs/`, `docs/adr/`, `docs/agents/issue-tracker.md`, system-level `CONTEXT.md` — while the child repos nest inside it as independent git repos, untracked by the root (whitelist `.gitignore`).
