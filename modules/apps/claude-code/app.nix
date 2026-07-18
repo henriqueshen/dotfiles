@@ -5,6 +5,8 @@
       imports = [
       ];
 
+      home.file.".claude/CLAUDE.md".source = ./CLAUDE.md;
+
       programs.claude-code = {
         enable = true;
         settings = {
