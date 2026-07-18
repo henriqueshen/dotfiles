@@ -98,6 +98,7 @@
             set -g @tmux-dotbar-bg "default"
             set -g @tmux-dotbar-right true
             set -g @tmux-dotbar-position top
+            set -g @tmux-dotbar-rounded false
           '';
         }
       ];
