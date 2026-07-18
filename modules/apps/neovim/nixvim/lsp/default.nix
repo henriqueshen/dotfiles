@@ -7,6 +7,7 @@
       self.nixvimModules.lsp-rust
       self.nixvimModules.lsp-toml
       self.nixvimModules.lsp-yaml
+      self.nixvimModules.lsp-json
       self.nixvimModules.lsp-opentofu
       self.nixvimModules.lsp-protobuf
     ];
