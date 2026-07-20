@@ -13,7 +13,7 @@
         source = ./settings.json;
         force = true;
       };
-      home.file.".claude/skills/herdr/SKILLS.md" = {
+      home.file.".claude/skills/herdr/SKILL.md" = {
         source = ../herdr/SKILL.md;
         force = true;
       };
