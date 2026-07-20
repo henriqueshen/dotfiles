@@ -16,6 +16,7 @@
 
       programs.claude-code = {
         enable = true;
+        force = true;
         settings = {
           model = "claude-fable-5[1m]";
           theme = "dark";
