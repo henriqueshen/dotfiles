@@ -18,6 +18,10 @@
         force = true;
       };
 
+      home.packages = with pkgs; [
+        nodejs
+      ];
+
       programs.claude-code = {
         enable = true;
         mcpServers.linear-server = {
