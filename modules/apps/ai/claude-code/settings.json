@@ -1,30 +1,48 @@
 {
-  "model": "claude-fable-5[1m]",
+  "agentPushNotifEnabled": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "codex@openai-codex": true,
-    "code-simplifier@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "codex@openai-codex": true,
+    "context7@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
-    "mattpocock-skills@mattpocock": true
+    "frontend-design@claude-plugins-official": true,
+    "mattpocock-skills@mattpocock": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "openai-codex": {
-      "source": {
-        "source": "github",
-        "repo": "openai/codex-plugin-cc"
-      }
-    },
     "mattpocock": {
       "source": {
-        "source": "github",
-        "repo": "mattpocock/skills"
+        "repo": "mattpocock/skills",
+        "source": "github"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "repo": "openai/codex-plugin-cc",
+        "source": "github"
       }
     }
   },
-  "theme": "dark",
-  "agentPushNotifEnabled": true
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/home/hshen2908/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
+  "model": "claude-fable-5[1m]",
+  "theme": "dark"
 }
