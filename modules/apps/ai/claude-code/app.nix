@@ -6,6 +6,7 @@
       ];
 
       home.file.".claude/CLAUDE.md".source = ./CLAUDE.md;
+      home.file.".claude/skills/herdr/SKILLS.md".source = ../herdr/SKILL.md;
 
       programs.claude-code = {
         enable = true;

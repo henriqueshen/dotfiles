@@ -5,8 +5,8 @@
       imports = [
       ];
 
-      home.packages = with pkgs; [
-        herdr
-      ];
+      programs.herdr = {
+        enable = true;
+      };
     };
 }
