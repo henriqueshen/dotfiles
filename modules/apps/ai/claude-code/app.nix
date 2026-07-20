@@ -5,8 +5,14 @@
       imports = [
       ];
 
-      home.file.".claude/CLAUDE.md".source = ./CLAUDE.md;
-      home.file.".claude/skills/herdr/SKILLS.md".source = ../herdr/SKILL.md;
+      home.file.".claude/CLAUDE.md" = {
+        source = ./CLAUDE.md;
+        force = true;
+      };
+      home.file.".claude/skills/herdr/SKILLS.md" = {
+        source = ../herdr/SKILL.md;
+        force = true;
+      };
 
       programs.claude-code = {
         enable = true;
