@@ -129,6 +129,7 @@
         bind % split-window -h -c "#{pane_current_path}"
 
         bind-key E new-window -c "#{pane_current_path}" "nvim"
+        bind-key A new-window -c "#{pane_current_path}" "herdr"
         bind-key G new-window -c "#{pane_current_path}" "lazygit"
         bind-key C new-window -c "#{pane_current_path}" "lazydocker"
         bind-key N new-window -c "#{pane_current_path}" "nmtui"
