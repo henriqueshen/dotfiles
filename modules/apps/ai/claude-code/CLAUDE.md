@@ -33,8 +33,9 @@
 - I manage work in Linear. At the start of a coding task, look up the relevant Linear issue/project for context.
 - Use the Linear resource that matches the altitude of the work: **initiatives** for system-wide efforts spanning multiple projects (architecture programs, platform-level goals); **projects** for features or design workstreams spanning multiple issues, with specs mirrored as project documents; **issues** for any discrete unit of work — not just features and bugs but design and spec work, research and spikes, investigations, refactors, chores, and docs, anything with a start and an end; **comments** for progress and decisions. Link them hierarchically (issue → project → initiative) so design work and implementation stay connected.
 - Track every non-trivial thread of work as an issue, whatever its kind. A design exploration, a research question, a spike to de-risk a decision, a debugging investigation, or a chore all deserve their own issue so the work is visible, has a home for progress comments, and links to whatever it produces (spec, ADR, research note, PR). Distinguish kinds with labels or issue type (feature, bug, design, research, spike, chore, docs) rather than by leaving work untracked. For non-code issues the acceptance criteria are deliverables — a written spec, a recorded decision, an answered question — not passing tests.
-- Proactively suggest Linear actions — creating issues for any new work (features, bugs, design, research, spikes, chores), updating status, adding comments, linking PRs/specs/docs — but always propose and confirm with me before writing to Linear.
-- When we finish or change scope, prompt me to update the corresponding issue.
+- Leverage Linear proactively. The proactivity is in identifying, at the moment it applies, which tracker action fits: new work surfaces (feature, bug, design, research, spike, chore, docs) → an issue; work starts or finishes → a status transition; a decision or milestone lands → a comment; a PR, spec, or doc exists → a link; scope evolves → a project or initiative update.
+- Propose the concrete action with drafted content (title, description, comment text) and confirm with me before writing to Linear — never write in the background. Once confirmed, apply it and report what changed.
+- When a task ends or scope changes, proactively propose the reconciling updates (statuses, closing comments, follow-up issues) rather than waiting to be asked.
 - Use Linear documents for whatever document type fits the work — specs, design docs, ADR summaries, research notes, meeting/decision records — attached to the appropriate project or initiative and linked from the related issues. In-repo markdown remains the canonical copy where a template defines one (e.g. specs); the Linear document mirrors it.
 - Keep idea documents: potential features, brainstorm outcomes, and directions considered but not (yet) pursued are worth recording — as Linear documents on the relevant project or initiative (cross-cutting ones in the root workspace repo). Capture them when they come up so future planning can draw on them; a short freeform note with links is enough, no full spec template needed.
 
@@ -56,10 +57,11 @@ Every document of a given type uses the same template: same section names, same 
 - Specs affecting a single repo live in that repo's `docs/specs/`; only cross-cutting design goes in the root.
 
 ## Code style
-- Write modern, idiomatic, maintainable code following current best practices for the language at hand.
+- Write modern, idiomatic, maintainable code held to the highest standards and conventions of the language at hand — naming, structure, error handling, and API design should look like exemplary code from that language's ecosystem, indistinguishable from a senior engineer's work.
 - Explicit error handling: no swallowed errors; in Rust no `unwrap()`/`panic!` in production paths — typed errors (`thiserror`) in libraries, `anyhow` with context in binaries.
 - Minimal dependencies: prefer std and existing deps; justify any new crate/package before adding it.
 - Few comments: self-documenting names and structure; comment only non-obvious constraints and invariants.
+- Comments address the future reader of the code, never the current conversation. No session-context leakage: nothing that explains a choice relative to our chat, the change process, or a prior discussion ("using a Future here because...", "as discussed", "changed from X"). If a comment wouldn't make sense to a stranger reading the file in a year, it doesn't belong.
 - Match each repo's established patterns, formatters, and lints (rustfmt, clippy, biome, …) — run them before considering work complete.
 
 ## Environment
@@ -69,4 +71,5 @@ Every document of a given type uses the same template: same section names, same 
 ## Communication
 - Adapt depth to the subject: terse for routine status, thorough when discussing design, trade-offs, or anything surprising.
 - Surface significant decisions and trade-offs for discussion rather than silently choosing.
-- No AI-flavored output: no emojis (in responses, commits, PRs, code, or docs), no "Generated with Claude Code" badges or `Co-Authored-By: Claude` trailers, no filler enthusiasm ("Great question!", "Certainly!"). Write like a colleague: plain, direct prose.
+- Professional artifacts: anything written into shared systems — Linear issues, projects, and documents, specs, ADRs, commits, PRs — uses professional, standardized language following modern industry conventions. Name work by its deliverable ("Define the art direction", "Write the Foundations spec"); internal process jargon ("brainstorm session", "grill session", "spec cycle") stays in conversation and out of artifacts.
+- No AI telltale signs, in responses or artifacts: no emojis (in responses, commits, PRs, code, or docs), no "Generated with Claude Code" badges or `Co-Authored-By: Claude` trailers, no filler enthusiasm ("Great question!", "Certainly!"). Avoid the stylistic tells as well: formulaic constructions ("not just X, but Y", rule-of-three lists), hedging filler ("It's important to note", "In conclusion"), inflated adjectives ("seamless", "robust", "comprehensive"), and overuse of em-dashes, bold text, and bullet lists where plain prose serves. Write like a colleague: plain, direct prose.
