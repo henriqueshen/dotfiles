@@ -23,6 +23,7 @@
       # self.nixvimModules.tmux-navigator
       self.nixvimModules.gitsigns
       self.nixvimModules.quicker
+      self.nixvimModules.markview
       self.nixvimModules.nvim-bqf
     ];
   };
