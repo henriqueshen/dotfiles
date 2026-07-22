@@ -44,5 +44,10 @@
     ]
   },
   "model": "claude-fable-5[1m]",
-  "theme": "dark"
+  "theme": "dark",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 2
+  }
 }
