@@ -13,6 +13,10 @@
         source = ./settings.json;
         force = true;
       };
+      home.file.".claude/statusline.sh" = {
+        source = ./statusline.sh;
+        force = true;
+      };
       home.file.".claude/skills/herdr/SKILL.md" = {
         source = ../herdr/SKILL.md;
         force = true;
