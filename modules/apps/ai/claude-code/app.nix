@@ -24,6 +24,7 @@
 
       home.packages = with pkgs; [
         nodejs
+        jq
       ];
 
       programs.claude-code = {
