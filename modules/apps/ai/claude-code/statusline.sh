@@ -107,15 +107,15 @@ fi
 
 line4=""
 if [ -n "$cw_used_pct" ]; then
-  line4="${CYAN}context: ${cw_used_pct}%% used / ${cw_remaining_pct}%% left${RESET}"
+  line4="${CYAN}context: ${cw_used_pct}% used / ${cw_remaining_pct}% left${RESET}"
   line4+=" ${GRAY}(${cw_total_input:-0}in+${cw_total_output:-0}out / ${cw_size} window)${RESET}"
 fi
 
 line5=""
 if [ -n "$rl_5h_pct" ] || [ -n "$rl_7d_pct" ]; then
   line5="${RED}limits:${RESET}"
-  [ -n "$rl_5h_pct" ] && line5+=" ${RED}5h $(printf '%.0f' "$rl_5h_pct")%% (resets $(fmt_epoch "$rl_5h_resets"))${RESET}"
-  [ -n "$rl_7d_pct" ] && line5+=" ${RED}7d $(printf '%.0f' "$rl_7d_pct")%% (resets $(fmt_epoch "$rl_7d_resets"))${RESET}"
+  [ -n "$rl_5h_pct" ] && line5+=" ${RED}5h $(printf '%.0f' "$rl_5h_pct")% (resets $(fmt_epoch "$rl_5h_resets"))${RESET}"
+  [ -n "$rl_7d_pct" ] && line5+=" ${RED}7d $(printf '%.0f' "$rl_7d_pct")% (resets $(fmt_epoch "$rl_7d_resets"))${RESET}"
 fi
 
 line6="${GRAY}session:${session_id}${RESET}"
@@ -148,3 +148,4 @@ printf '%b\n' "$line7"
 printf '%b\n' "$line8"
 [ -n "$line9" ] && printf '%b\n' "$line9"
 [ -n "$line10" ] && printf '%b\n' "$line10"
+exit 0
