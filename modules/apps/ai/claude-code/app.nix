@@ -24,7 +24,7 @@
 
       home.packages = with pkgs; [
         nodejs
-        python
+        python3
         jq
       ];
 
