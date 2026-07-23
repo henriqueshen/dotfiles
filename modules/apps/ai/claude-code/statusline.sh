@@ -64,18 +64,13 @@ if [ -n "$used" ]; then
   done
   bar="${bar}${RESET}"
 
-  if [ "$used_int" -ge 90 ]; then status_emoji="🚨"
-  elif [ "$used_int" -ge 70 ]; then status_emoji="🔥"
-  elif [ "$used_int" -ge 20 ]; then status_emoji="⚡"
-  else status_emoji="🟢"; fi
-
   if [ "$used_int" -ge 90 ]; then pct_color="$RED"
   elif [ "$used_int" -ge 70 ]; then pct_color="$YELLOW"
   else pct_color="$GREEN"; fi
 
-  ctx_part="${status_emoji} ${bar} ${pct_color}${used_int}%${RESET}"
+  ctx_part="${bar} ${pct_color}${used_int}%${RESET}"
 else
-  ctx_part="🟢 \033[38;2;60;60;60m░░░░░░░░░░░░░░░░░░░░${RESET} --%"
+  ctx_part="\033[38;2;60;60;60m░░░░░░░░░░░░░░░░░░░░${RESET} --%"
 fi
 
 # ── Cost ──
@@ -87,10 +82,10 @@ velocity="${GREEN}+${lines_add}${RESET} ${RED}-${lines_del}${RESET}"
 # ── Single line ──
 out=""
 [ -n "$repo" ] && out="${BOLD}${YELLOW}${repo}${RESET}"
-[ -n "$branch" ] && out="${out:+$out }${BOLD}${CYAN}🌿 (${branch})${RESET}"
+[ -n "$branch" ] && out="${out:+$out }${BOLD}${CYAN}(${branch})${RESET}"
 out="${out:+$out ${DIM}|${RESET} }${ctx_part}"
 out="${out} ${DIM}|${RESET} ${cost_part}"
 out="${out} ${DIM}|${RESET} ${velocity}"
-out="${out} ${DIM}|${RESET} ${MAGENTA}🤖 ${model}${RESET}"
+out="${out} ${DIM}|${RESET} ${MAGENTA}${model}${RESET}"
 
 printf '%b' "$out"
