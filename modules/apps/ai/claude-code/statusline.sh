@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Claude Code status line, two rows:
-#   repo (branch) │ context gradient bar │ model + effort
-#   5h/weekly rate-limit windows with reset times │ cost │ code velocity
+#   repo (branch) │ model + effort │ cost │ code velocity │ session duration
+#   ctx / 5h / weekly gradient meters, equal width, with reset times
 
 input=$(cat)
 
@@ -14,6 +14,7 @@ MAGENTA='\033[35m'
 DIM='\033[2m'
 BOLD='\033[1m'
 RESET='\033[0m'
+GRAY='\033[38;2;60;60;60m'
 SEP=" ${DIM}│${RESET} "
 
 # ── Truecolor helper ──
@@ -21,7 +22,7 @@ rgb() { printf '\033[38;2;%d;%d;%dm' "$1" "$2" "$3"; }
 
 # ── Parse JSON (single jq call, unit-separator delimited) ──
 IFS=$'\x1f' read -r model used cost lines_add lines_del cwd \
-  five_pct five_reset week_pct week_reset effort < <(
+  five_pct five_reset week_pct week_reset effort dur_ms < <(
   jq -r '[
     (.model.display_name // "?"),
     (.context_window.used_percentage // ""),
@@ -33,7 +34,8 @@ IFS=$'\x1f' read -r model used cost lines_add lines_del cwd \
     (.rate_limits.five_hour.resets_at // ""),
     (.rate_limits.seven_day.used_percentage // ""),
     (.rate_limits.seven_day.resets_at // ""),
-    (.effort.level // "")
+    (.effort.level // ""),
+    (.cost.total_duration_ms // 0)
   ] | map(tostring) | join("\u001f")' <<< "$input"
 )
 
@@ -46,6 +48,8 @@ if [ -n "$cwd" ]; then
 fi
 
 # ── Gradient bar: green → yellow → red, dim gray for the unfilled tail ──
+BAR_WIDTH=12
+
 gradient_bar() {
   local pct=$1 width=$2
   local filled=$(( (pct * width + 50) / 100 ))
@@ -61,7 +65,7 @@ gradient_bar() {
     if [ "$i" -lt "$filled" ]; then
       bar+="$(rgb "$r" "$g" "$b")█"
     else
-      bar+='\033[38;2;60;60;60m░'
+      bar+="${GRAY}░"
     fi
   done
   printf '%s%s' "$bar" "$RESET"
@@ -71,6 +75,19 @@ pct_color() {
   if [ "$1" -ge 90 ]; then printf '%s' "$RED"
   elif [ "$1" -ge 70 ]; then printf '%s' "$YELLOW"
   else printf '%s' "$GREEN"; fi
+}
+
+# One meter: dim label, gradient bar, right-aligned %, optional dim suffix
+meter() {
+  local label=$1 pct=$2 suffix=$3 p
+  p=$(printf '%.0f' "$pct")
+  printf '%s' "${DIM}${label}${RESET} $(gradient_bar "$p" "$BAR_WIDTH") $(pct_color "$p")$(printf '%3d' "$p")%${RESET}${suffix:+ ${DIM}${suffix}${RESET}}"
+}
+
+empty_meter() {
+  local label=$1 bar="" i
+  for (( i = 0; i < BAR_WIDTH; i++ )); do bar+="${GRAY}░"; done
+  printf '%s' "${DIM}${label}${RESET} ${bar}${RESET} ${DIM} --%${RESET}"
 }
 
 # resets_at arrives as epoch seconds; tolerate ISO strings just in case
@@ -90,47 +107,38 @@ fmt_countdown() {
   else printf '%dm' $(( rem / 60 )); fi
 }
 
-# ── Context bar ──
-BAR_WIDTH=20
-if [ -n "$used" ]; then
-  used_int=$(printf '%.0f' "$used")
-  ctx_part="$(gradient_bar "$used_int" "$BAR_WIDTH") $(pct_color "$used_int")${used_int}%${RESET}"
-else
-  ctx_part="\033[38;2;60;60;60m░░░░░░░░░░░░░░░░░░░░${RESET} ${DIM}--%${RESET}"
-fi
-
-# ── Rate-limit windows (present for subscribers, after first response) ──
-limit_part() {
-  local label=$1 pct=$2 reset_ts=$3 p epoch out
-  p=$(printf '%.0f' "$pct")
-  out="${DIM}${label}${RESET} $(gradient_bar "$p" 8) $(pct_color "$p")${p}%${RESET}"
-  if epoch=$(to_epoch "$reset_ts"); then
-    if [ "$label" = "wk" ]; then
-      out="${out} ${DIM}↻$(date -d "@$epoch" +%a)${RESET}"
-    else
-      out="${out} ${DIM}↻$(fmt_countdown "$epoch")${RESET}"
-    fi
-  fi
-  printf '%s' "$out"
+fmt_duration() {
+  local mins=$(( $1 / 60000 ))
+  if (( mins >= 60 )); then printf '%dh%02dm' $(( mins / 60 )) $(( mins % 60 ))
+  else printf '%dm' "$mins"; fi
 }
 
-usage_parts=""
-[ -n "$five_pct" ] && usage_parts="$(limit_part 5h "$five_pct" "$five_reset")"
-[ -n "$week_pct" ] && usage_parts="${usage_parts:+$usage_parts$SEP}$(limit_part wk "$week_pct" "$week_reset")"
+reset_hint() {  # label reset_ts
+  local epoch
+  if epoch=$(to_epoch "$2"); then
+    if [ "$1" = "wk" ]; then printf '↻%s' "$(date -d "@$epoch" +%a)"
+    else printf '↻%s' "$(fmt_countdown "$epoch")"; fi
+  fi
+}
 
-# ── Cost & code velocity ──
-cost_part="${YELLOW}$(printf '$%.2f' "$cost")${RESET}"
-velocity="${GREEN}+${lines_add}${RESET} ${RED}-${lines_del}${RESET}"
-
-# ── Line 1: where am I, how full is the context, what model ──
+# ── Line 1: where, what model, what it cost ──
 line1=""
 [ -n "$repo" ] && line1="${BOLD}${YELLOW}${repo}${RESET}"
 [ -n "$branch" ] && line1="${line1:+$line1 }${BOLD}${CYAN}(${branch})${RESET}"
-line1="${line1:+$line1$SEP}${ctx_part}"
-line1="${line1}${SEP}${MAGENTA}${model}${RESET}"
+line1="${line1:+$line1$SEP}${MAGENTA}${model}${RESET}"
 [ -n "$effort" ] && line1="${line1} ${DIM}·${effort}${RESET}"
+line1="${line1}${SEP}${YELLOW}$(printf '$%.2f' "$cost")${RESET}"
+line1="${line1}${SEP}${GREEN}+${lines_add}${RESET} ${RED}-${lines_del}${RESET}"
+line1="${line1}${SEP}${DIM}$(fmt_duration "$dur_ms")${RESET}"
 
-# ── Line 2: what am I burning ──
-line2="${usage_parts:+$usage_parts$SEP}${cost_part}${SEP}${velocity}"
+# ── Line 2: the meters — context, 5h window, weekly window ──
+if [ -n "$used" ]; then
+  line2="$(meter ctx "$used" "")"
+else
+  line2="$(empty_meter ctx)"
+fi
+
+[ -n "$five_pct" ] && line2="${line2}${SEP}$(meter " 5h" "$five_pct" "$(reset_hint 5h "$five_reset")")"
+[ -n "$week_pct" ] && line2="${line2}${SEP}$(meter " wk" "$week_pct" "$(reset_hint wk "$week_reset")")"
 
 printf '%b\n%b' "$line1" "$line2"
