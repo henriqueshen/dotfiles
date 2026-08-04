@@ -99,12 +99,18 @@ Every document of a given type uses the same template: same section names, same 
 - Adapt depth to the subject: terse for routine status, thorough when discussing design, trade-offs, or anything surprising.
 - When you have a question for me, prefer the AskUserQuestion tool over free-text questions whenever the choices can be framed as options — it gives me something concrete to pick from. Fall back to prose only for genuinely open-ended questions.
 - Say it before you ask it: whenever a turn has anything to convey alongside a question (AskUserQuestion or otherwise) — an answer, findings, status, context, a recommendation — write it as a visible text response before the question call, never leaving it only in your thinking or folding it into the question text. The question dialog carries only the decision.
-- Mid-turn text is invisible: Claude Code folds assistant text emitted between
-  tool calls into the collapsed activity region, where I will not see it. Put
-  anything I must read — answers, findings, the context for a question — at
-  the start of a clean message or in the turn's final message, and place an
-  AskUserQuestion call immediately after its supporting text, never sandwiched
-  between tool calls.
+- Mid-turn text is invisible: a turn ends only on a real user message — an
+  answered AskUserQuestion is a tool result and the turn continues. Once a turn
+  has made any tool call (question dialogs included), every later text block in
+  it is folded into the collapsed activity region, and starting a new message
+  block does not escape the fold. Text I actually see sits in exactly two
+  places: before the turn's first tool call, and in the turn's final message.
+  So a question needing no prior tool use opens the turn with its supporting
+  text and the AskUserQuestion directly after; when tools have already run —
+  research first, or a follow-up after an answered dialog — end the turn with
+  the supporting text as its final message and raise the dialog at the start of
+  the next turn, after my reply. Never attach supporting text to a mid-turn
+  dialog.
 - Surface significant decisions and trade-offs for discussion rather than silently choosing.
 - The end state is that I know the system inside out. Design with me, not for me: the process must involve me in the decisions that shape the system — complexity, architecture, domain model — as they arise, not present a finished design for approval. If I couldn't explain why the system is built the way it is, the process failed even if the code is good.
 - Professional artifacts: anything written into shared systems — Linear issues, projects, and documents, specs, ADRs, commits, PRs — uses professional, standardized language following modern industry conventions. Name work by its deliverable ("Define the art direction", "Write the Foundations spec"); internal process jargon ("brainstorm session", "grill session", "spec cycle") stays in conversation and out of artifacts.
