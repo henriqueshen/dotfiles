@@ -1,0 +1,49 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+
+[projects."/home/hshen2908/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/realms/cache-rs"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/realms/broker-rs"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/realms/authz-rs"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/realms"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/test"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/realms/infra"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/lunaire"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/lunaire/core"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/lunaire/.worktrees/luna-12"]
+trust_level = "trusted"
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 4
+
+[features]
+hooks = true
+remote_control = true
+
+[hooks.state]
+[hooks.state."/home/hshen2908/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:05d9e32979ab0d4812c96d98627f6291cb1e99587b685ba0c4f7f05371c1d5c9"
