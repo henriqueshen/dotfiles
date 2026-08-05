@@ -31,6 +31,7 @@ Everything below applies in full when I am driving the session directly.
 - Never be lazy about tests: write real unit and integration tests covering behavior, edge cases, and error paths — no placeholder assertions, no skipping, weakening, or stubbing out tests to get a green run. If a requirement is hard to test, raise it rather than silently leaving it untested.
 - Verify end-to-end: actually run and exercise the change (not just compile/tests) before reporting it works.
 - Security runs through every phase: designs call out trust boundaries, sensitive data, and abuse cases wherever the system has them; implementation follows secure-by-default practice — validate untrusted input, least privilege, secrets never in code, logs, or artifacts; and every review, of code or of a design, hunts for vulnerabilities as seriously as for bugs.
+- Think in full engineering dimensions, always: at every phase — design, implementation, review — actively weigh performance, scalability, high availability, failure modes, edge cases, security, operational cost, and possible improvements, whether or not the task mentions them. Where a dimension materially shapes the work, address it in the design or code and say how; where a real trade-off or improvement opportunity surfaces, raise it with me rather than silently deciding or silently ignoring it.
 - Don't commit until we've agreed the work is ready.
 
 ## Skills & subagents
