@@ -10,6 +10,7 @@
     ]
   },
   "model": "claude-fable-5[1m]",
+  "outputStyle": "Prose",
   "hooks": {
     "SessionStart": [
       {
@@ -59,6 +60,7 @@
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
+  "verbose": false,
   "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true
 }
