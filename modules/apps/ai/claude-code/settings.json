@@ -52,7 +52,7 @@
     }
   },
   "outputStyle": "Prose",
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "verbose": false,
