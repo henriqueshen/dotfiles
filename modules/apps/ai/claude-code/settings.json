@@ -10,7 +10,6 @@
     ]
   },
   "model": "claude-fable-5[1m]",
-  "outputStyle": "Prose",
   "hooks": {
     "SessionStart": [
       {
@@ -41,15 +40,10 @@
     "frontend-design@claude-plugins-official": true,
     "mattpocock-skills@mattpocock": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "mattpocock": {
-      "source": {
-        "source": "github",
-        "repo": "mattpocock/skills"
-      }
-    },
     "openai-codex": {
       "source": {
         "source": "github",
@@ -57,6 +51,7 @@
       }
     }
   },
+  "outputStyle": "Prose",
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
