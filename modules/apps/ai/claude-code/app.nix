@@ -22,6 +22,10 @@
         source = ../herdr/SKILL.md;
         force = true;
       };
+      home.file.".claude/output-styles/prose.md" = {
+        source = ./output-styles/prose.md;
+        force = true;
+      };
       home.file.".claude.1/CLAUDE.md" = {
         source = ./CLAUDE.md;
         force = true;
@@ -32,6 +36,10 @@
       };
       home.file.".claude.1/skills/herdr/SKILL.md" = {
         source = ../herdr/SKILL.md;
+        force = true;
+      };
+      home.file.".claude.1/output-styles/prose.md" = {
+        source = ./output-styles/prose.md;
         force = true;
       };
       home.activation.linkClaudeSettings = lib.mkAfter ''
