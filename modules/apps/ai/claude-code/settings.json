@@ -57,5 +57,6 @@
   "theme": "dark",
   "verbose": false,
   "switchModelsOnFlag": false,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "remoteControlAtStartup": false
 }
