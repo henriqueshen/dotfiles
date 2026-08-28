@@ -40,6 +40,12 @@ trust_level = "trusted"
 [projects."/home/hshen2908/projects/lunaire/platform"]
 trust_level = "trusted"
 
+[projects."/home/hshen2908/projects/a/impl-codex"]
+trust_level = "trusted"
+
+[projects."/home/hshen2908/projects/a/maint-codex"]
+trust_level = "trusted"
+
 [plugins."superpowers@openai-curated"]
 enabled = true
 

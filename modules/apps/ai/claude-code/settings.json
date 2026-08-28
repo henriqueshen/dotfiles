@@ -4,6 +4,9 @@
     "pr": ""
   },
   "permissions": {
+    "allow": [
+      "Bash(herdr:*)"
+    ],
     "deny": [
       "Workflow",
       "Artifact"
