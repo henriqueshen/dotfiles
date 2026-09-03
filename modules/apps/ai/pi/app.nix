@@ -11,7 +11,7 @@
           name = "pi-coding-agent";
           buildInputs = [ pkgs.makeWrapper ];
           paths = [
-            inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi-conding-agent
+            inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
           ];
           postBuild = ''
             wrapProgram $out/bin/pi \
