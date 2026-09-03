@@ -22,6 +22,7 @@
     };
 
     nixvim.url = "github:nix-community/nixvim";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
