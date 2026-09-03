@@ -29,6 +29,7 @@ These rules govern responses, commit messages, issues, and any prose not covered
 - Prose stands alone. Nothing narrates how the text came to be or anchors it to a working session. A document states what is true now, as if written fresh by someone who knows the system. Change history belongs to git and ADRs.
 - Documents never reference agent-facing files (CONTEXT.md, `docs/agents/`, CLAUDE.md, AGENTS.md) or the agent tooling.
 - Define a term on first use, and gloss a term owned by another document on its first use in each file.
+- A durable artifact defines a thing by what it is in general, never by the use that prompted it in the current conversation. This applies to labels, glossary terms, issues, checklist items, and sentences in documents alike. The test is whether someone who never saw the conversation, reaching the thing from a different direction, would find the definition correct.
 - Vocabulary bans: never write "spike" (use "prototype") or "seam" (name the actual boundary: "embedding", "interface", "boundary") in any artifact or response.
 - Check every message against these rules and against `~/.config/ai/docs-standards/banlist.md` before sending, starting with the first message of a session. The riskiest messages are the dense ones (research summaries, multi-finding walkthroughs, option comparisons, acknowledgements of corrections), and those are drafted at half the density that feels natural.
 
