@@ -54,7 +54,7 @@
       '';
 
       home.packages = with pkgs; [
-        nodejs
+        nodejs_latest
         python3
         jq
       ];
