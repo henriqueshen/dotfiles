@@ -5,6 +5,7 @@
       self.homeModules.herdr
       self.homeModules.claude-code
       self.homeModules.codex
+      self.homeModules.pi
       self.homeModules.docs-standards
     ];
   };
