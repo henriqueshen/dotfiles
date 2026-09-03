@@ -33,7 +33,7 @@
 
       home = {
         username = "hshen2908";
-        homeDirectory = if pkgs.stdenv.isDarwin then "/Users/hshen2908" else "/home/hshen2908";
+        homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/hshen2908" else "/home/hshen2908";
         stateVersion = "26.05";
       };
 
