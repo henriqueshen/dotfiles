@@ -10,7 +10,9 @@
         (pkgs.symlinkJoin {
           name = "pi-coding-agent";
           buildInputs = [ pkgs.makeWrapper ];
-          paths = [ pkgs.pi-coding-agent ];
+          paths = [
+            inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi-conding-agent
+          ];
           postBuild = ''
             wrapProgram $out/bin/pi \
               --set NPM_CONFIG_PREFIX ${config.home.homeDirectory}/.pi/npm/ \
