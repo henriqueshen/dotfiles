@@ -26,8 +26,9 @@
       };
     };
 
-  perSystem = { pkgs, lib, ... }: {
-    packages.zsh = inputs.wrapper-modules.wrappers.zsh.wrap {
+  perSystem = { pkgs, lib, ... }:
+    let
+      configuredZsh = inputs.wrapper-modules.wrappers.zsh.wrap {
       inherit pkgs;
 
       zshAliases = {
@@ -91,5 +92,27 @@
         '';
       };
     };
-  };
+    in
+    {
+      packages.zsh = pkgs.symlinkJoin {
+        name = "${configuredZsh.name}-orca-compatible";
+        paths = [ configuredZsh ];
+        nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+        meta = configuredZsh.meta // {
+          outputsToInstall = [ "out" ];
+        };
+        passthru = {
+          inherit (configuredZsh) ZDOTDIR shellPath;
+        };
+        postBuild = ''
+          rm "$out/bin/zsh"
+
+          # Orca temporarily replaces ZDOTDIR to install its shell-ready hook.
+          # Preserve that override while retaining the generated zsh configuration.
+          makeWrapper ${lib.getExe pkgs.zsh} "$out/bin/zsh" \
+            --inherit-argv0 \
+            --set-default ZDOTDIR ${lib.escapeShellArg configuredZsh.ZDOTDIR}
+        '';
+      };
+    };
 }

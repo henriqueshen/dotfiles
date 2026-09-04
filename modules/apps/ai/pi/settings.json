@@ -14,5 +14,6 @@
     "npm:pi-background-tasks@2.4.2",
     "git:github.com/obra/superpowers@b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
     "git:github.com/mattpocock/skills@6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
-  ]
+  ],
+  "lastChangelogVersion": "0.84.4"
 }
