@@ -11,7 +11,7 @@
       ];
 
       home.file.".codex/AGENTS.md" = {
-        source = ./AGENTS.md;
+        source = ../AGENTS.md;
         force = true;
       };
       home.activation.linkCodexSettings = lib.mkAfter ''

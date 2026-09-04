@@ -10,6 +10,7 @@
 
         self.nixosModules.zsh
         self.nixosModules.docker
+        self.nixosModules.tailscale
       ];
 
       users.users."hshen2908" = {

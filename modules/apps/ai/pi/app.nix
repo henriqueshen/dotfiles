@@ -10,6 +10,10 @@
       imports = [
       ];
 
+      home.file.".pi/agent/AGENTS.md" = {
+        source = ../AGENTS.md;
+        force = true;
+      };
       home.file.".pi/agent/skills/herdr/SKILL.md" = {
         source = ../herdr/SKILL.md;
         force = true;

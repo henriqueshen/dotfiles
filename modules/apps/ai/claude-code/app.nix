@@ -11,7 +11,7 @@
       ];
 
       home.file.".claude/CLAUDE.md" = {
-        source = ./CLAUDE.md;
+        source = ../AGENTS.md;
         force = true;
       };
       home.file.".claude/statusline.sh" = {
@@ -27,7 +27,7 @@
         force = true;
       };
       home.file.".claude.1/CLAUDE.md" = {
-        source = ./CLAUDE.md;
+        source = ../AGENTS.md;
         force = true;
       };
       home.file.".claude.1/statusline.sh" = {

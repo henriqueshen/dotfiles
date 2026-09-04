@@ -59,3 +59,27 @@ remote_control = true
 [hooks.state]
 [hooks.state."/home/hshen2908/.codex/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:05d9e32979ab0d4812c96d98627f6291cb1e99587b685ba0c4f7f05371c1d5c9"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:65ee0359142663df3d4867f34c027f906b90eae094e753daafe02beb0a79c927"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:cba1891bd9cd14c526f8116c58e0a8794b4313b23bf462683b667f3deec8c8bd"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:1af44eb607ddfa8d43efa7d2adc18b9dba2dc457ebc9e5671d2d0431ebed096d"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:bf0a9587a262ad8a1da9e54beb7826b6f88b9ddc8422c9a0192885f813ad1f21"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:da555a7abadd8722b2fcecb1f053313d508e64d3df5943addb4d9554f84bc4f1"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:9fe2502dfbec29d5b8fb681324de8b113c00c7d2da1cc50c6e8b7712936474b5"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:2c17ce692bb9678c7b236a7f3b5db11f78119e5420d6e9abe04eb526cf491378"
+
+[hooks.state."/home/hshen2908/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:cbe2ad5b861cd8c0782ed4d6f6a309c0fd79133eae6c3f298c26476f5fdeb55b"
