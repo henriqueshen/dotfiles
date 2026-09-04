@@ -6,6 +6,7 @@
       ];
 
       home.packages = [
+        pkgs.xvfb
         inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.orca
       ];
     };
