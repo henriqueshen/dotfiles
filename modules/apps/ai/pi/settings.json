@@ -12,7 +12,6 @@
     "npm:context-mode@1.0.169",
     "npm:@companion-ai/feynman@0.3.47",
     "npm:pi-background-tasks@2.4.2",
-    "npm:pi-web-ui@0.63.2",
     "git:github.com/obra/superpowers@b36e0829c6d0140e93cfef2ca599b1b07d4a7797"
   ]
 }
