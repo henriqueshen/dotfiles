@@ -42,7 +42,8 @@
               --set NPM_CONFIG_PREFIX ${config.home.homeDirectory}/.pi/npm/ \
               --prefix PATH : ${
                 pkgs.lib.makeBinPath [
-                  pkgs.nodejs_latest
+                  # Feynman currently supports Node 22-25, not Node 26.
+                  pkgs.nodejs_24
                 ]
               }
           '';
