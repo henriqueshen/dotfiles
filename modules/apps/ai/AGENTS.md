@@ -4,7 +4,7 @@
 
 ## If you are running as a subagent (read this first)
 
-Some sessions are launched through Orca as workers or full-ownership handoffs rather than started by me directly. Orca injects a lifecycle preamble into delegated sessions; a brief may also include an explicit marker ("You are a subagent; role: ..."). If either is present, or, failing that, the prompt reads as a scoped brief rather than a conversation, this section governs and the rest of this document applies only where noted.
+Some sessions are launched through Orca or Herdr as workers or full-ownership handoffs rather than started by me directly. Orca injects a lifecycle preamble into delegated sessions; a Herdr brief includes an explicit marker ("You are a subagent; role: ..."). If either is present, or, failing that, the prompt reads as a scoped brief rather than a conversation, this section governs and the rest of this document applies only where noted.
 
 - Execute the prompt directly and report back. Ignore the orchestration, Linear, and workflow-gating rules below: don't seek spec approval, don't write to Linear, don't spawn further subagents, and don't block waiting for confirmation the orchestrator cannot give.
 - These rules still bind you in full: Code style, the testing discipline from Core workflow (real unit and integration tests, no placeholder assertions, never claim done without running the suite), end-to-end verification, the Documents section and the docs standards directory for any artifact you produce, and the prose rules and the banlist under Communication.
@@ -21,6 +21,7 @@ Some sessions are launched through Orca as workers or full-ownership handoffs ra
 Everything below applies in full when I am driving the session directly.
 
 ## Core workflow: problem, spec, tickets, tests, implementation
+
 - Non-trivial work (new features, behavior changes, anything requiring design decisions) follows this order. Interview me about the problem and the approach. Write the working spec with `/to-spec` into the repo, at the location the Documents section gives. Run the spec review described under Reviews. Cut the spec into vertical-slice tickets with `/to-tickets`. Then, per ticket, write tests and implement with `/implement`. Don't start coding before the spec is agreed.
 - Trivial work (typo and doc fixes, mechanical refactors, pure Q&A) skips the spec, but tests and end-to-end verification still apply to any code change.
 - Design is a dialogue, not a deliverable. Start by interviewing me (goals, constraints, edge cases, what I'd consider over-engineering) before proposing anything. Grilling runs both ways by default: challenge my assumptions and stated requirements, and present your own thinking for me to challenge. The spec carries the decisions that come out of that conversation and nothing else. The conversation itself is not a record and is not written down anywhere.
@@ -40,6 +41,7 @@ Everything below applies in full when I am driving the session directly.
 - Don't commit until we've agreed the work is ready.
 
 ## Documents
+
 Documents come in two tiers, plus the product documents. Working specs are written before a build and are disposable: nobody maintains them after their tickets ship. Finalized documents are written from the built system afterwards and are held to the standard of the best public documentation. Product documents describe what the product is and how it is used.
 
 - Layout, in the root workspace repo:
@@ -64,21 +66,25 @@ Documents come in two tiers, plus the product documents. Working specs are writt
 - Skills that produce documents (including `/to-spec` and `/to-tickets`, configured per repo with `/setup-matt-pocock-skills`) conform to the rules above. Consistency across repos wins over a skill's built-in variations.
 
 ## Docs standards directory
+
 `~/.config/ai/docs-standards/` holds the writing guides, one exemplar per document type, the banlist of machine-writing patterns including the ones specific to Claude models, and the readiness checklist, all deployed from the dotfiles. Read its `README.md` before writing or reviewing any document, then the guide and the exemplar for the type at hand. Check every response and every artifact against `banlist.md` before sending it.
 
 ## Skills & subagents
+
 - Use installed skills eagerly (superpowers: brainstorming, TDD, systematic-debugging, writing-plans; mattpocock: grilling, diagnosing-bugs, domain-modeling, to-spec, to-tickets, implement; and the rest). If a skill might apply, invoke it. Prefer a false positive over skipping one.
 - Offer user-driven skills at the right moment. A few skills only work with me in the loop, so remind me when they fit and let me decide.
   - When I bring a plan, decision, or idea of my own outside a design conversation, offer to grill me (mattpocock grilling) before we run with it. Within spec work, grilling is on by default per Core workflow and needs no offer.
   - When a design question is better answered by building than debating, suggest a prototype.
   All other applicable skills (brainstorming, TDD, systematic-debugging, verification-before-completion, code review, and so on) are invoked eagerly per the rule above, with no need to ask first.
-- Delegate substantial well-scoped work to Orca workers (search, architecture, implementation, and code review) and coordinate them through Orca. Run independent tasks in parallel.
-- Use the `orchestration` skill for supervised coordination, threaded messages, task dispatch, waits, DAGs, decision gates, and worker lifecycle. Use `orca-cli` for full-ownership handoffs when I did not ask you to supervise or wait for results. Coordination requires real Orca runtime state: never substitute native subagent tools, background agent calls, or Herdr.
+- Delegate substantial well-scoped work to workers (search, architecture, implementation, and code review). Run independent tasks in parallel.
+- Before delegating work, ask me whether to use Orca or Herdr and ask me to choose the model for each role. Present the available models, your recommendation, and the relevant trade-offs. Group these decisions into one question where practical. Do not dispatch until I choose.
+- When I choose Orca, use the `orchestration` skill for supervised coordination, threaded messages, task dispatch, waits, DAGs, decision gates, and worker lifecycle. Use `orca-cli` for full-ownership handoffs when I did not ask you to supervise or wait for results.
 - Before issuing Orca commands, resolve the CLI exactly as the relevant Orca skill specifies and load its version-matched guide with `skills get`. Never guess Orca subcommands or flags from memory. If the selected executable fails, report the exact error and stop instead of falling through to another executable.
+- When I choose Herdr, use the `herdr` skill and launch visible worker panes in a separate tab without stealing focus. Name panes by role and use Herdr status and transcript commands to coordinate them.
+- Coordination requires the selected runtime's actual state. Never substitute native subagent tools or background agent calls for Orca or Herdr.
 - No single agent is the source of truth. For any consequential output (a spec, a finalized document, a domain model, a diagnosis, a risky refactor, and not only code review), obtain at least one independent perspective from a different frontier agent or model at the correct effort before presenting it to me as settled. Brief that agent to criticize and propose alternatives, not to confirm. This applies to your own proposals too. Surface genuine disagreements between agents to me instead of silently resolving them.
 - Open every dispatch brief with an explicit marker ("You are a subagent; role: implementer/reviewer/...") so the receiving agent's subagent rules engage reliably instead of depending on it inferring the mode from prompt shape.
-- Before launching any subagents, ask me to choose the model for each role. Present the available models, your recommendation, and the relevant trade-offs. Group roles that can use the same model into one question where practical. Do not dispatch until I choose. If my choice is unavailable, explain that and ask me to choose from the available options.
-- When launching an Orca worker, set the model, reasoning effort, permission mode, allowed tools, working directory, and agent-specific launch options explicitly through the version-matched Orca workflow. Don't launch with defaults and hope. A worker that can't run the commands its task requires, or runs on the wrong model, wastes the whole dispatch.
+- When launching a worker, set the model, reasoning effort, permission mode, allowed tools, working directory, and agent-specific launch options explicitly through the selected runtime. Don't launch with defaults and hope. A worker that can't run the commands its task requires, or runs on the wrong model, wastes the whole dispatch.
 - Subagent model choice. For substantial implementation, diagnosis, and review work, use a frontier model with reasoning effort matched to the task, so implementer and reviewer are peers in intelligence and can meaningfully review each other. There is no standing default. Ask me which model to use for each role. Recommend lighter models for tasks that are simple, structured, and well defined (searches, mechanical edits, boilerplate).
 
 ### Reviews
