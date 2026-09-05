@@ -7,6 +7,7 @@
       self.homeModules.claude-code
       self.homeModules.codex
       self.homeModules.pi
+      self.homeModules.omp
       self.homeModules.docs-standards
     ];
   };
