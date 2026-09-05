@@ -21,3 +21,8 @@ generate_image:
   enabled: true
 astGrep:
   enabled: true
+extendedContext: true
+github:
+  enabled: true
+checkpoint:
+  enabled: true
