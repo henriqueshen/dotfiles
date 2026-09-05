@@ -85,7 +85,6 @@
               browser = getExe pkgs.firefox;
               fuzzel = getExe pkgs.fuzzel;
               swaylock = getExe pkgs.swaylock;
-              orca = getExe pkgs.orca;
               playerctl = getExe pkgs.playerctl;
               brightnessctl = getExe pkgs.brightnessctl;
               wpctl = getExe' pkgs.wireplumber "wpctl";
@@ -97,10 +96,6 @@
               "Mod+C".spawn = [ browser ];
               # "Mod+D".spawn = [ fuzzel ];
               "Super+Alt+L".spawn = [ swaylock ];
-              "Super+Alt+S" = _: {
-                props.allow-when-locked = true;
-                content.spawn-sh = "pkill orca || exec ${orca}";
-              };
               "XF86AudioRaiseVolume" = _: {
                 props.allow-when-locked = true;
                 content.spawn-sh = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
